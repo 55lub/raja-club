@@ -1,4 +1,0 @@
-hereRewriteEngine On
-RewriteRule ^webapi/(.*)$ api/$1 [L,QSA]
-RewriteRule ^api/(.*)$ api/$1 [L,QSA]
-Header set Access-Control-Allow-Origin "*"
