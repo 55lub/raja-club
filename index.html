@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Fishing Demo</title>
+<style>
+  body{margin:0;background:#002244;overflow:hidden;touch-action:none;font-family:Arial}
+  canvas{display:block;margin:0 auto;background: linear-gradient(#0a4a8a, #062a4e)}
+  #ui{position:absolute;top:10px;left:10px;color:gold;font-weight:bold;text-shadow:1px 1px 2px black}
+  #info{position:absolute;bottom:10px;width:100%;text-align:center;color:white;opacity:0.7}
+</style>
+</head>
+<body>
+<div id="ui">💰 COINS: <span id="coins">1000</span> | 🔫 BET: 3.69</div>
+<div id="info">Tap / Click to Shoot | Auto shoots crabs</div>
+<canvas id="game" width="800" height="600"></canvas>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+let coins = 1000;
+let fishes = [];
+let bullets = [];
+let particles = [];
+let mouse = {x:400,y:300};
+
+function makeFish(){
+  let isBoss = Math.random() < 0.15;
+  fishes.push({
+    x: -100, y: Math.random()*500+50,
+    vx: (isBoss?1.2:2.5)+Math.random()*1.5,
+    size: isBoss?80:30+Math.random()*20,
+    hp: isBoss?25:3,
+    boss: isBoss,
+    color: isBoss?'#ff4400':`hsl(${180+Math.random()*60},100%,60%)`
+  });
+}
+
+canvas.addEventListener('mousemove', e=>{
+  let r=canvas.getBoundingClientRect();
+  mouse.x=(e.clientX-r.left)*(canvas.width/r.width);
+  mouse.y=(e.clientY-r.top)*(canvas.height/r.height);
+});
+canvas.addEventListener('touchmove', e=>{
+  let r=canvas.getBoundingClientRect();
+  mouse.x=(e.touches[0].clientX-r.left)*(canvas.width/r.width);
+  mouse.y=(e.touches[0].clientY-r.top)*(canvas.height/r.height);
+});
+
+canvas.addEventListener('click', shoot);
+canvas.addEventListener('touchstart', shoot);
+
+function shoot(){
+  if(coins < 3) return;
+  coins-=3;
+  document.getElementById('coins').innerText=coins;
+  let angle = Math.atan2(mouse.y - 550, mouse.x - 400);
+  bullets.push({x:400,y:550,vx:Math.cos(angle)*12,vy:Math.sin(angle)*12});
+}
+
+function loop(){
+  ctx.clearRect(0,0,800,600);
+  
+  // seaweeds
+  ctx.fillStyle="#0a8a4a33";
+  for(let i=0;i<10;i++) ctx.fillRect(i*80,500,20,100);
+
+  if(Math.random()<0.04) makeFish();
+
+  // fishes
+  fishes.forEach((f,i)=>{
+    f.x+=f.vx;
+    f.y+=Math.sin(Date.now()/500+f.x)*0.5;
+    ctx.save();
+    ctx.translate(f.x,f.y);
+    if(f.boss){
+      ctx.fillStyle=f.color;
+      ctx.beginPath(); ctx.arc(0,0,f.size/2,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="white"; ctx.fillText("CRAB BOSS",-35,5);
+      // 5x prize tag like video
+      ctx.fillStyle="gold"; ctx.beginPath(); ctx.arc(30,-30,15,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="black"; ctx.font="12px Arial"; ctx.fillText("5X",22,-26);
+    } else {
+      ctx.fillStyle=f.color;
+      ctx.beginPath(); ctx.ellipse(0,0,f.size, f.size/2,0,0,Math.PI*2); ctx.fill();
+      ctx.fillStyle="white"; ctx.beginPath(); ctx.arc(f.size/2,0,5,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+
+    if(f.x>900) fishes.splice(i,1);
+
+    bullets.forEach((b,j)=>{
+      let d=Math.hypot(b.x-f.x,b.y-f.y);
+      if(d < f.size){
+        f.hp--; bullets.splice(j,1);
+        if(f.hp<=0){
+          // coin blast - like your video
+          let win = f.boss ? 500 : 50;
+          coins+=win;
+          document.getElementById('coins').innerText=coins;
+          for(let k=0;k<20;k++) particles.push({x:f.x,y:f.y,vx:(Math.random()-0.5)*10,vy:(Math.random()-0.5)*10,life:30,txt:k==0?`+${win}`:"$"});
+          fishes.splice(i,1);
+          if(f.boss){
+            // Mega Octopus bonus wheel effect
+            particles.push({x:400,y:300,vx:0,vy:0,life:60,txt:"MEGA BONUS 950X!",big:true});
+          }
+        }
+      }
+    });
+  });
+
+  // bullets
+  ctx.fillStyle="yellow";
+  bullets.forEach((b,i)=>{
+    b.x+=b.vx; b.y+=b.vy;
+    ctx.beginPath(); ctx.arc(b.x,b.y,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle="#ffffff88"; ctx.beginPath(); ctx.arc(b.x,b.y,3,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle="yellow";
+    if(b.x<0||b.x>800||b.y<0||b.y>600) bullets.splice(i,1);
+  });
+
+  // particles / coins
+  particles.forEach((p,i)=>{
+    p.x+=p.vx; p.y+=p.vy; p.life--;
+    ctx.fillStyle="gold";
+    ctx.font= p.big ? "bold 32px Arial" : "bold 16px Arial";
+    if(p.txt) ctx.fillText(p.txt,p.x,p.y);
+    if(p.life<=0) particles.splice(i,1);
+  });
+
+  // gun - YOUR POSITION like video
+  ctx.save();
+  ctx.translate(400,550);
+  let ang = Math.atan2(mouse.y-550, mouse.x-400);
+  ctx.rotate(ang);
+  ctx.fillStyle="#444"; ctx.fillRect(0,-8,60,16);
+  ctx.fillStyle="#ffcc00"; ctx.fillRect(50,-12,30,24);
+  ctx.restore();
+  ctx.fillStyle="cyan"; ctx.font="12px Arial"; ctx.fillText("YOUR POSITION",370,580);
+
+  requestAnimationFrame(loop);
+}
+loop();
+setInterval(makeFish,800);
+</script>
+</body>
+  </html>
