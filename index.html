@@ -7,7 +7,10 @@
 body{background:#0a3328;display:flex;justify-content:center}
 .mobile{width:400px;max-width:100%;background:#011a12;min-height:100vh;padding:10px;position:relative}
 .wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white}
-.wallet h1{color:#ffd700}
+.wallet h1{color:#ffd700;font-size:28px}
+.wBtns{display:flex;gap:10px;justify-content:center;margin-top:10px}
+.wBtns button{padding:8px 25px;border-radius:20px;border:none;font-weight:900;cursor:pointer}
+.with{background:#ff3d3d;color:white}.dep{background:#00c853;color:white}
 .modes{display:flex;gap:5px;margin:10px 0}
 .mode{flex:1;background:#1a3d33;border-radius:10px;padding:6px;text-align:center;color:#aaa;font-size:11px;border:2px solid transparent;cursor:pointer}
 .mode.active{background:#00c853;color:white}
@@ -28,8 +31,8 @@ body{background:#0a3328;display:flex;justify-content:center}
 .pager{display:flex;justify-content:center;gap:20px;padding:10px;background:#0d4a3a;margin-top:8px;border-radius:10px;color:white}
 .pager button{padding:6px 12px;background:#00c853;color:white;border:none;border-radius:6px;font-weight:900}
 
-/* BET POPUP - PHOTO JEVU */
-#betModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:1000}
+/* BET MODAL */
+#betModal,#depModal,#withModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:1000}
 .betSheet{width:400px;max-width:100%;background:#0f0f0f;border-radius:20px 20px 0 0;overflow:hidden;animation:slideUp.3s}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .betHead{background:#8bb9ff;padding:15px;text-align:center;position:relative}
@@ -39,21 +42,27 @@ body{background:#0a3328;display:flex;justify-content:center}
 .betRow{display:flex;justify-content:space-between;align-items:center;margin:15px 0}
 .amtBtns{display:flex;gap:8px}
 .amtBtn{background:#333;color:white;border:none;padding:8px 12px;border-radius:6px;font-weight:900}
-.amtBtn.active{background:#4a90e2;color:white}
+.amtBtn.active{background:#4a90e2}
 .qtyBox{display:flex;align-items:center;gap:10px}
 .qtyBox button{width:30px;height:30px;background:#4a90e2;color:white;border:none;border-radius:6px;font-size:18px}
 .qtyBox input{width:60px;background:black;color:white;border:1px solid #333;text-align:center;padding:6px;border-radius:6px}
 .multBtns{display:flex;gap:6px;flex-wrap:wrap}
 .multBtn{background:#1a3d33;color:white;border:none;padding:8px 12px;border-radius:6px;font-size:12px}
 .multBtn.active{background:#4a90e2}
-.agree{font-size:12px;margin:10px 0}
-.agree span{color:#ff4444}
 .betFoot{display:flex}
 .betFoot button{flex:1;padding:15px;border:none;font-weight:900;cursor:pointer}
 .betFoot.cancel{background:#1a3d33;color:white}
 .betFoot.confirm{background:#4a90e2;color:white}
 
-/* WIN/LOSS */
+/* DEPOSIT / WITHDRAW SHEET */
+.depSheet{width:400px;max-width:100%;background:#111;border-radius:20px 20px 0 0;padding:20px;color:white}
+.depSheet h2{text-align:center;color:#ffd700;margin-bottom:15px}
+.depSheet input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#222;color:white;margin:8px 0;font-size:16px}
+.depOptions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.depOptions button{padding:10px;background:#1a3d33;color:white;border:1px solid #00c853;border-radius:10px;font-weight:900}
+.depSheet.mainBtn{width:100%;padding:14px;background:#00c853;color:white;border:none;border-radius:12px;font-weight:900;font-size:16px;margin-top:10px}
+.depSheet.closeBtn{width:100%;padding:10px;background:#333;color:white;border:none;border-radius:10px;margin-top:8px}
+
 #resultPop{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;display:none;justify-content:center;align-items:center;z-index:1001}
 .pop{width:300px;background:#222;border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
 .pop.win{border-color:#00ff88;box-shadow:0 0 30px #00ff88}
@@ -62,7 +71,11 @@ body{background:#0a3328;display:flex;justify-content:center}
 </head>
 <body>
 <div class="mobile">
-<div class="wallet"><h1>₹<span id="bal">5000</span></h1><p>👑 RAJA CLUB</p><p id="myBets" style="font-size:11px;color:#ffd700"></p></div>
+<div class="wallet"><h1>₹<span id="bal">5000</span></h1><p>👑 RAJA CLUB WALLET</p>
+<div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div>
+<p id="myBets" style="font-size:11px;color:#ffd700;margin-top:8px"></p>
+</div>
+
 <div class="modes"><div class="mode active" data-s="30">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300">5 Min<span id="live300">05:00</span></div></div>
 <div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:10px"></span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
 <div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div>
@@ -72,86 +85,62 @@ body{background:#0a3328;display:flex;justify-content:center}
 <div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div>
 </div>
 
-<!-- BET MODAL PHOTO JEVU -->
-<div id="betModal">
-<div class="betSheet">
-<div class="betHead"><h3 id="betTitle">Select Small</h3></div>
-<div class="betBody">
+<!-- BET MODAL -->
+<div id="betModal"><div class="betSheet"><div class="betHead"><h3 id="betTitle">Select Small</h3></div><div class="betBody">
 <div class="betRow"><span>Balance</span><div class="amtBtns"><button class="amtBtn active" data-a="1" onclick="setAmt(1)">1</button><button class="amtBtn" data-a="10" onclick="setAmt(10)">10</button><button class="amtBtn" data-a="100" onclick="setAmt(100)">100</button><button class="amtBtn" data-a="1000" onclick="setAmt(1000)">1000</button></div></div>
 <div class="betRow"><span>Quantity</span><div class="qtyBox"><button onclick="changeQty(-1)">-</button><input id="qty" value="1" type="number"><button onclick="changeQty(1)">+</button></div></div>
 <div class="betRow"><span></span><div class="multBtns"><button class="multBtn active" data-m="1" onclick="setMult(1)">X1</button><button class="multBtn" data-m="5" onclick="setMult(5)">X5</button><button class="multBtn" data-m="10" onclick="setMult(10)">X10</button><button class="multBtn" data-m="20" onclick="setMult(20)">X20</button><button class="multBtn" data-m="50" onclick="setMult(50)">X50</button><button class="multBtn" data-m="100" onclick="setMult(100)">X100</button></div></div>
-<div class="agree">🟡 I agree <span>(Pre-sale rules)</span></div>
-</div>
-<div class="betFoot"><button class="cancel" onclick="closeBet()">Cancel</button><button class="confirm" id="confirmBtn" onclick="confirmBet()">Total amount ₹1.00</button></div>
-</div>
-</div>
+<div style="font-size:12px;margin-top:10px">🟡 I agree <span style="color:#ff4444">(Pre-sale rules)</span></div>
+</div><div class="betFoot"><button class="cancel" onclick="closeBet()">Cancel</button><button class="confirm" id="confirmBtn" onclick="confirmBet()">Total amount ₹1.00</button></div></div></div>
+
+<!-- DEPOSIT MODAL -->
+<div id="depModal"><div class="depSheet"><h2>💰 Deposit</h2><input id="depAmt" type="number" placeholder="Enter amount - Min ₹100"><div class="depOptions"><button onclick="setDep(100)">₹100</button><button onclick="setDep(500)">₹500</button><button onclick="setDep(1000)">₹1000</button><button onclick="setDep(5000)">₹5000</button><button onclick="setDep(10000)">₹10000</button><button onclick="setDep(20000)">₹20000</button></div><input placeholder="UPI ID (Demo)"><button class="mainBtn" onclick="doDeposit()">Deposit Now</button><button class="closeBtn" onclick="closeDeposit()">Close</button></div></div>
+
+<!-- WITHDRAW MODAL -->
+<div id="withModal"><div class="depSheet"><h2>🏦 Withdraw</h2><p style="color:#aaa;font-size:13px">Available Balance: ₹<span id="withBal">0</span></p><input id="withAmt" type="number" placeholder="Enter withdraw amount - Min ₹200"><div class="depOptions"><button onclick="setWith(200)">₹200</button><button onclick="setWith(500)">₹500</button><button onclick="setWith(1000)">₹1000</button><button onclick="setWith(5000)">₹5000</button></div><input placeholder="Bank / UPI ID"><button class="mainBtn" style="background:#ff3d3d" onclick="doWithdraw()">Withdraw Now</button><button class="closeBtn" onclick="closeWithdraw()">Close</button></div></div>
 
 <div id="resultPop" onclick="this.style.display='none'"><div class="pop" id="popBox"><h1 id="popTitle">WIN</h1><p id="popMsg"></p><br><button style="padding:10px 20px;background:gold;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
 
 <script>
 let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
-let data=JSON.parse(localStorage.getItem('rajaFinalV4')||'null')||defaultData;
+let data=JSON.parse(localStorage.getItem('rajaFinalV5')||'null')||defaultData;
 let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
 if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
 let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
-function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaFinalV4', JSON.stringify(data)); }
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaFinalV5', JSON.stringify(data)); }
+
+function openDeposit(){ document.getElementById('depModal').style.display='flex'; }
+function closeDeposit(){ document.getElementById('depModal').style.display='none'; }
+function setDep(a){ document.getElementById('depAmt').value=a; }
+function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); if(!a||a<100) return alert('Min ₹100'); bal+=a; save(); render(); closeDeposit(); showPop(true,'Deposit Success ₹'+a); }
+
+function openWithdraw(){ document.getElementById('withBal').innerText=bal; document.getElementById('withModal').style.display='flex'; }
+function closeWithdraw(){ document.getElementById('withModal').style.display='none'; }
+function setWith(a){ document.getElementById('withAmt').value=a; }
+function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min withdraw ₹200'); if(a>bal) return alert('Balance kam che! Max: ₹'+bal); bal-=a; save(); render(); closeWithdraw(); showPop(false,'Withdraw Request ₹'+a+' - 24h ma aavse (Demo)'); }
 
 let numsDiv=document.getElementById('nums');
 for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d); }
 document.querySelectorAll('.mode').forEach(m=>{ m.onclick=()=>{ currentSec=parseInt(m.dataset.s); document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active')); m.classList.add('active'); page=1; render(); save(); } });
 
-function openBet(type,val,title){
-  if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bet bandh');
-  selType=type; selVal=val; document.getElementById('betTitle').innerText=title;
-  document.getElementById('betModal').style.display='flex'; updateTotal();
-}
+function openBet(type,val,title){ if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bet bandh'); selType=type; selVal=val; document.getElementById('betTitle').innerText=title; document.getElementById('betModal').style.display='flex'; updateTotal(); }
 function closeBet(){ document.getElementById('betModal').style.display='none'; }
 function setAmt(a){ selAmt=a; document.querySelectorAll('.amtBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.a)==a)); updateTotal(); }
 function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.m)==m)); updateTotal(); }
 function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal(); }
 document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal(); });
 function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total amount ₹'+total.toFixed(2); }
+function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi! ₹'+bal+' che'); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total,period:data.periods[currentSec]}); save(); render(); closeBet(); }
 
-function confirmBet(){
-  let total=selAmt*selQty*selMult;
-  if(total>bal) return alert('Balance nathi! Tamara paase ₹'+bal+' che');
-  bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total,period:data.periods[currentSec]});
-  save(); render(); closeBet();
-}
-
-function render(){
-  document.getElementById('bal').innerText=bal;
-  document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0');
-  document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min';
-  [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); document.getElementById('live'+sec).innerText=mm+':'+ss; });
-  let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : '';
-  renderHistory();
-}
+function render(){ document.getElementById('bal').innerText=bal; document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); document.getElementById('live'+sec).innerText=mm+':'+ss; }); let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : ''; renderHistory(); }
 function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html; }
 function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory(); }
-function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; } document.getElementById('popMsg').innerText=msg; }
-function checkWin(sec,num){ let color=num==0||num==5?'violet':num%2==0?'red':'green'; if(num==0) color='redviolet'; if(num==5) color='greenviolet'; let bs=num>=5?'big':'small'; let totalWin=0,totalLoss=0; data.bets[sec].forEach(b=>{ if(b.type=='color'){ if(b.val=='violet'&&(num==0||num==5)) totalWin+=b.amt*4.5; else if(b.val==color|| (b.val=='red'&&(num==0||color.includes('red'))) || (b.val=='green'&&(num==5||color.includes('green')))) { if(!(b.val=='violet'&&(num!=0&&num!=5))) totalWin+=b.amt*2; else totalLoss+=b.amt; } else if(!(b.val=='red'&&num==0)&&!(b.val=='green'&&num==5)){ if(!(b.val!='violet')){} else totalLoss+=b.amt; } } if(b.type=='size'&&b.val==bs) totalWin+=b.amt*2; else if(b.type=='size') totalLoss+=b.amt; if(b.type=='number'&&b.val==num) totalWin+=b.amt*9; else if(b.type=='number') totalLoss+=b.amt; }); // simplified color logic
-  // correct simple logic for demo
-  let realWin=0; data.bets[sec].forEach(b=>{
-    let w=false;
-    if(b.type=='color'){
-      if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true;
-      if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true;
-      if(b.val=='violet' && [0,5].includes(num)) w=true;
-    }
-    if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true;
-    if(b.type=='number' && b.val==num) w=true;
-    if(w){
-      let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2);
-      realWin+=b.amt*mult;
-    }
-  });
-  if(realWin>0){ bal+=Math.floor(realWin); showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); }
-  data.bets[sec]=[];
-}
+function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='📤 INFO'; } document.getElementById('popMsg').innerText=msg; }
+function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); } data.bets[sec]=[]; }
 setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; render(); if(tl%2==0) save(); },1000);
 render();
 </script>
 </body>
-                                                                                                                                                                                                                                                   </html>
+  </html>
+                                                                                                                                                                                                                                                   
                                                                                                                                                                                      
