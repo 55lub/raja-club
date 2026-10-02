@@ -2,146 +2,135 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Fishing Demo</title>
+<title>Happy Fishing HD - Real Fish</title>
 <style>
-  body{margin:0;background:#002244;overflow:hidden;touch-action:none;font-family:Arial}
-  canvas{display:block;margin:0 auto;background: linear-gradient(#0a4a8a, #062a4e)}
-  #ui{position:absolute;top:10px;left:10px;color:gold;font-weight:bold;text-shadow:1px 1px 2px black}
-  #info{position:absolute;bottom:10px;width:100%;text-align:center;color:white;opacity:0.7}
+ body{margin:0;background:#001a33;overflow:hidden}
+ canvas{display:block;width:100vw;height:100vh}
+ #ui{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:10px;color:white;font-family:Arial;background:linear-gradient(black,transparent)}
 </style>
 </head>
 <body>
-<div id="ui">💰 COINS: <span id="coins">1000</span> | 🔫 BET: 3.69</div>
-<div id="info">Tap / Click to Shoot | Auto shoots crabs</div>
-<canvas id="game" width="800" height="600"></canvas>
-
+<div id="ui"><span>💰 <b id="coins">1000</b></span><span>🔫 BET 6.90 | AUTO | ⚡ LOCK</span></div>
+<canvas id="game"></canvas>
 <script>
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
-let coins = 1000;
-let fishes = [];
-let bullets = [];
-let particles = [];
-let mouse = {x:400,y:300};
+const canvas=document.getElementById('game');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+let coins=1000;
+let fishes=[],bullets=[],coinsAnim=[];
 
-function makeFish(){
-  let isBoss = Math.random() < 0.15;
+const fishImgs=[];
+const fishTypes=[
+ {src:'https://i.ibb.co/3Yv0b7x/fish1.png', fallback:'🐠'},
+ {src:'https://i.ibb.co/7Qp2b7v/fish2.png', fallback:'🐟'}
+];
+// Simple fallback ne real drawing thi karisu
+
+function createFish(){
+  let isBoss = Math.random()<0.2;
   fishes.push({
-    x: -100, y: Math.random()*500+50,
-    vx: (isBoss?1.2:2.5)+Math.random()*1.5,
-    size: isBoss?80:30+Math.random()*20,
-    hp: isBoss?25:3,
+    x:-150, y:100+Math.random()*(canvas.height-300),
+    vx: isBoss?0.8:1.8+Math.random()*2,
+    size: isBoss? 130 : 55+Math.random()*35,
+    hp: isBoss? 30 : 5,
     boss: isBoss,
-    color: isBoss?'#ff4400':`hsl(${180+Math.random()*60},100%,60%)`
+    type: Math.floor(Math.random()*4),
+    color: `hsl(${200+Math.random()*50}, 90%, 60%)`,
+    wobble: Math.random()*10
   });
 }
 
-canvas.addEventListener('mousemove', e=>{
-  let r=canvas.getBoundingClientRect();
-  mouse.x=(e.clientX-r.left)*(canvas.width/r.width);
-  mouse.y=(e.clientY-r.top)*(canvas.height/r.height);
-});
-canvas.addEventListener('touchmove', e=>{
-  let r=canvas.getBoundingClientRect();
-  mouse.x=(e.touches[0].clientX-r.left)*(canvas.width/r.width);
-  mouse.y=(e.touches[0].clientY-r.top)*(canvas.height/r.height);
-});
-
-canvas.addEventListener('click', shoot);
-canvas.addEventListener('touchstart', shoot);
+let mouse={x:canvas.width/2,y:canvas.height/2};
+canvas.addEventListener('pointermove', e=>{mouse.x=e.clientX; mouse.y=e.clientY});
+canvas.addEventListener('pointerdown', shoot);
 
 function shoot(){
-  if(coins < 3) return;
-  coins-=3;
-  document.getElementById('coins').innerText=coins;
-  let angle = Math.atan2(mouse.y - 550, mouse.x - 400);
-  bullets.push({x:400,y:550,vx:Math.cos(angle)*12,vy:Math.sin(angle)*12});
+  if(coins<2) return;
+  coins-=2; document.getElementById('coins').innerText=coins;
+  let angle=Math.atan2(mouse.y-(canvas.height-80), mouse.x-canvas.width/2);
+  bullets.push({x:canvas.width/2,y:canvas.height-80,vx:Math.cos(angle)*14,vy:Math.sin(angle)*14,angle:angle});
+}
+
+function drawRealFish(f){
+  ctx.save(); ctx.translate(f.x,f.y);
+  // body
+  if(f.boss){
+    // CRAB BOSS like your video - red crab
+    ctx.fillStyle='#ff3300'; ctx.beginPath();
+    ctx.arc(0,0,f.size/2,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#ffaa00'; for(let i=0;i<6;i++){ctx.fillRect(-f.size/2-10, -20+i*10, 20,6)}
+    for(let i=0;i<6;i++){ctx.fillRect(f.size/2-10, -20+i*10, 20,6)}
+    ctx.fillStyle='gold'; ctx.beginPath(); ctx.arc(40,-40,18,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='black'; ctx.font='bold 14px Arial'; ctx.fillText('5X',30,-36);
+  } else {
+    // REAL FISH SHAPE
+    ctx.fillStyle=f.color;
+    ctx.beginPath(); ctx.ellipse(0,0,f.size/2,f.size/3,0,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-f.size/2,0); ctx.lineTo(-f.size/2-20,-15); ctx.lineTo(-f.size/2-20,15); ctx.closePath(); ctx.fill();
+    ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(f.size/4,-8,8,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='black'; ctx.beginPath(); ctx.arc(f.size/4+2,-8,3,0,Math.PI*2); ctx.fill();
+    if(f.type%2==0){ctx.fillStyle='orange'; ctx.beginPath(); ctx.ellipse(f.size/4,10,10,5,0,0,Math.PI*2); ctx.fill();}
+  }
+  ctx.restore();
 }
 
 function loop(){
-  ctx.clearRect(0,0,800,600);
-  
-  // seaweeds
-  ctx.fillStyle="#0a8a4a33";
-  for(let i=0;i<10;i++) ctx.fillRect(i*80,500,20,100);
+  // water background like video
+  let grad=ctx.createLinearGradient(0,0,0,canvas.height);
+  grad.addColorStop(0,'#0a5a9a'); grad.addColorStop(1,'#021e36');
+  ctx.fillStyle=grad; ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  if(Math.random()<0.04) makeFish();
+  if(Math.random()<0.05) createFish();
 
-  // fishes
-  fishes.forEach((f,i)=>{
-    f.x+=f.vx;
-    f.y+=Math.sin(Date.now()/500+f.x)*0.5;
-    ctx.save();
-    ctx.translate(f.x,f.y);
-    if(f.boss){
-      ctx.fillStyle=f.color;
-      ctx.beginPath(); ctx.arc(0,0,f.size/2,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle="white"; ctx.fillText("CRAB BOSS",-35,5);
-      // 5x prize tag like video
-      ctx.fillStyle="gold"; ctx.beginPath(); ctx.arc(30,-30,15,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle="black"; ctx.font="12px Arial"; ctx.fillText("5X",22,-26);
-    } else {
-      ctx.fillStyle=f.color;
-      ctx.beginPath(); ctx.ellipse(0,0,f.size, f.size/2,0,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle="white"; ctx.beginPath(); ctx.arc(f.size/2,0,5,0,Math.PI*2); ctx.fill();
-    }
-    ctx.restore();
+  fishes.forEach((f,fi)=>{
+    f.x+=f.vx; f.y+=Math.sin(Date.now()/600+f.wobble)*1.2;
+    drawRealFish(f);
+    if(f.x>canvas.width+200) fishes.splice(fi,1);
 
-    if(f.x>900) fishes.splice(i,1);
-
-    bullets.forEach((b,j)=>{
-      let d=Math.hypot(b.x-f.x,b.y-f.y);
-      if(d < f.size){
-        f.hp--; bullets.splice(j,1);
+    bullets.forEach((b,bi)=>{
+      if(Math.hypot(b.x-f.x,b.y-f.y)<f.size/2){
+        f.hp--; bullets.splice(bi,1);
         if(f.hp<=0){
-          // coin blast - like your video
-          let win = f.boss ? 500 : 50;
-          coins+=win;
-          document.getElementById('coins').innerText=coins;
-          for(let k=0;k<20;k++) particles.push({x:f.x,y:f.y,vx:(Math.random()-0.5)*10,vy:(Math.random()-0.5)*10,life:30,txt:k==0?`+${win}`:"$"});
-          fishes.splice(i,1);
-          if(f.boss){
-            // Mega Octopus bonus wheel effect
-            particles.push({x:400,y:300,vx:0,vy:0,life:60,txt:"MEGA BONUS 950X!",big:true});
-          }
+          let win=f.boss?950:80;
+          coins+=win; document.getElementById('coins').innerText=coins;
+          for(let i=0;i<25;i++) coinsAnim.push({x:f.x,y:f.y,vx:(Math.random()-0.5)*12,vy:(Math.random()-0.5)*12-2,life:40,txt:'$'});
+          coinsAnim.push({x:f.x,y:f.y-40,vx:0,vy:-1,life:50,txt:`+${win} WIN!`,big:true});
+          fishes.splice(fi,1);
         }
       }
     });
   });
 
-  // bullets
-  ctx.fillStyle="yellow";
+  // BALL - Yellow energy ball like your video
   bullets.forEach((b,i)=>{
     b.x+=b.vx; b.y+=b.vy;
-    ctx.beginPath(); ctx.arc(b.x,b.y,6,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle="#ffffff88"; ctx.beginPath(); ctx.arc(b.x,b.y,3,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle="yellow";
-    if(b.x<0||b.x>800||b.y<0||b.y>600) bullets.splice(i,1);
+    let g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,12);
+    g.addColorStop(0,'white'); g.addColorStop(0.3,'yellow'); g.addColorStop(1,'orange');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(b.x,b.y,10,0,Math.PI*2); ctx.fill();
+    ctx.shadowColor='yellow'; ctx.shadowBlur=15; ctx.fill(); ctx.shadowBlur=0;
+    if(b.y<0||b.y>canvas.height||b.x<0||b.x>canvas.width) bullets.splice(i,1);
   });
 
-  // particles / coins
-  particles.forEach((p,i)=>{
-    p.x+=p.vx; p.y+=p.vy; p.life--;
-    ctx.fillStyle="gold";
-    ctx.font= p.big ? "bold 32px Arial" : "bold 16px Arial";
-    if(p.txt) ctx.fillText(p.txt,p.x,p.y);
-    if(p.life<=0) particles.splice(i,1);
+  coinsAnim.forEach((c,i)=>{
+    c.x+=c.vx; c.y+=c.vy; c.life--; c.vy+=0.2;
+    ctx.fillStyle='gold'; ctx.font=c.big?'bold 28px Arial':'bold 18px Arial';
+    ctx.fillText(c.txt,c.x,c.y);
+    if(c.life<=0) coinsAnim.splice(i,1);
   });
 
-  // gun - YOUR POSITION like video
-  ctx.save();
-  ctx.translate(400,550);
-  let ang = Math.atan2(mouse.y-550, mouse.x-400);
-  ctx.rotate(ang);
-  ctx.fillStyle="#444"; ctx.fillRect(0,-8,60,16);
-  ctx.fillStyle="#ffcc00"; ctx.fillRect(50,-12,30,24);
+  // Gun at bottom - YOUR POSITION
+  ctx.save(); ctx.translate(canvas.width/2,canvas.height-40);
+  ctx.rotate(Math.atan2(mouse.y-(canvas.height-40),mouse.x-canvas.width/2));
+  ctx.fillStyle='#333'; ctx.fillRect(0,-10,80,20);
+  ctx.fillStyle='gold'; ctx.fillRect(70,-14,35,28);
+  ctx.fillStyle='white'; ctx.beginPath(); ctx.arc(85,0,5,0,Math.PI*2); ctx.fill();
   ctx.restore();
-  ctx.fillStyle="cyan"; ctx.font="12px Arial"; ctx.fillText("YOUR POSITION",370,580);
+  ctx.fillStyle='#00ffff'; ctx.font='14px Arial'; ctx.fillText('YOUR POSITION',canvas.width/2-60,canvas.height-10);
 
   requestAnimationFrame(loop);
 }
 loop();
-setInterval(makeFish,800);
+setInterval(createFish,600);
 </script>
 </body>
-  </html>
+</html>
