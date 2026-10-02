@@ -14,9 +14,6 @@ body{background:#0a3328;display:flex;justify-content:center}
 .mode span{font-size:10px;color:#ffd700;display:block}
 .timeBox{background:#0d4a3a;border-radius:12px;padding:10px;display:flex;justify-content:space-between;color:white}
 .timer b{background:#222;padding:4px;border-radius:4px;color:#ffd700}
-.betBox{display:flex;gap:10px;margin:10px 0;background:#0d4a3a;padding:10px;border-radius:10px}
-.betBox input{flex:1;padding:10px;border-radius:8px;border:none;font-weight:900}
-.betBox button{padding:10px 15px;background:#ffd700;border:none;border-radius:8px;font-weight:900}
 .colors{display:flex;gap:8px;margin:8px 0}
 .c{flex:1;padding:10px;border-radius:20px;font-weight:900;border:none;cursor:pointer}
 .green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
@@ -24,127 +21,137 @@ body{background:#0a3328;display:flex;justify-content:center}
 .n{width:48px;height:48px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;color:white;cursor:pointer}
 .n.rednum{background:linear-gradient(#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
 .bigsmall{display:flex;gap:8px}
-.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900}
+.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900;cursor:pointer}
 .big{background:#ffb74d}.small{background:#64b5f6}
 .history{background:#0d4a3a;border-radius:12px;padding:10px;color:white;margin-top:10px}
 .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ffffff10;font-size:12px}
 .pager{display:flex;justify-content:center;gap:20px;padding:10px;background:#0d4a3a;margin-top:8px;border-radius:10px;color:white}
 .pager button{padding:6px 12px;background:#00c853;color:white;border:none;border-radius:6px;font-weight:900}
-#popup{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;display:none;justify-content:center;align-items:center;z-index:1000}
-.pop{width:300px;background:linear-gradient(#222,#000);border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
+
+/* BET POPUP - PHOTO JEVU */
+#betModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:1000}
+.betSheet{width:400px;max-width:100%;background:#0f0f0f;border-radius:20px 20px 0 0;overflow:hidden;animation:slideUp.3s}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.betHead{background:#8bb9ff;padding:15px;text-align:center;position:relative}
+.betHead h3{background:white;border-radius:10px;padding:8px 20px;display:inline-block;color:black;font-size:14px}
+.betHead:after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border-left:15px solid transparent;border-right:15px solid transparent;border-top:15px solid #8bb9ff}
+.betBody{padding:20px;color:white}
+.betRow{display:flex;justify-content:space-between;align-items:center;margin:15px 0}
+.amtBtns{display:flex;gap:8px}
+.amtBtn{background:#333;color:white;border:none;padding:8px 12px;border-radius:6px;font-weight:900}
+.amtBtn.active{background:#4a90e2;color:white}
+.qtyBox{display:flex;align-items:center;gap:10px}
+.qtyBox button{width:30px;height:30px;background:#4a90e2;color:white;border:none;border-radius:6px;font-size:18px}
+.qtyBox input{width:60px;background:black;color:white;border:1px solid #333;text-align:center;padding:6px;border-radius:6px}
+.multBtns{display:flex;gap:6px;flex-wrap:wrap}
+.multBtn{background:#1a3d33;color:white;border:none;padding:8px 12px;border-radius:6px;font-size:12px}
+.multBtn.active{background:#4a90e2}
+.agree{font-size:12px;margin:10px 0}
+.agree span{color:#ff4444}
+.betFoot{display:flex}
+.betFoot button{flex:1;padding:15px;border:none;font-weight:900;cursor:pointer}
+.betFoot.cancel{background:#1a3d33;color:white}
+.betFoot.confirm{background:#4a90e2;color:white}
+
+/* WIN/LOSS */
+#resultPop{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;display:none;justify-content:center;align-items:center;z-index:1001}
+.pop{width:300px;background:#222;border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
 .pop.win{border-color:#00ff88;box-shadow:0 0 30px #00ff88}
 .pop.lose{border-color:#ff0000;box-shadow:0 0 30px #ff0000}
-.pop h1{font-size:40px;margin:10px 0}
 </style>
 </head>
 <body>
 <div class="mobile">
-<div class="wallet"><h1>₹<span id="bal">0</span></h1><p>👑 RAJA CLUB WALLET</p><p id="myBets" style="font-size:11px;color:#ffd700;margin-top:5px"></p></div>
-<div class="modes" id="modes">
-<div class="mode active" data-s="30">30sec<span id="live30">00:30</span></div>
-<div class="mode" data-s="60">1 Min<span id="live60">01:00</span></div>
-<div class="mode" data-s="180">3 Min<span id="live180">03:00</span></div>
-<div class="mode" data-s="300">5 Min<span id="live300">05:00</span></div>
-</div>
+<div class="wallet"><h1>₹<span id="bal">5000</span></h1><p>👑 RAJA CLUB</p><p id="myBets" style="font-size:11px;color:#ffd700"></p></div>
+<div class="modes"><div class="mode active" data-s="30">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300">5 Min<span id="live300">05:00</span></div></div>
 <div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:10px"></span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
-
-<div class="betBox"><input id="betAmt" type="number" value="100" min="1" placeholder="Bet Amount"><button onclick="setMax()">MAX</button></div>
-
-<div class="colors"><button class="c green" onclick="placeBet('color','green')">Green 2X</button><button class="c violet" onclick="placeBet('color','violet')">Violet 4.5X</button><button class="c red" onclick="placeBet('color','red')">Red 2X</button></div>
+<div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div>
 <div class="numbers" id="nums"></div>
-<div class="bigsmall"><button class="big" onclick="placeBet('size','big')">Big 2X</button><button class="small" onclick="placeBet('size','small')">Small 2X</button></div>
-
+<div class="bigsmall"><button class="big" onclick="openBet('size','big','Select Big')">Big 2X</button><button class="small" onclick="openBet('size','small','Select Small')">Small 2X</button></div>
 <div class="history" id="hist"></div>
 <div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div>
 </div>
 
-<div id="popup" onclick="this.style.display='none'"><div class="pop" id="popBox"><h1 id="popTitle">WIN</h1><p id="popMsg"></p><br><button style="padding:10px 20px;background:gold;border:none;border-radius:10px;font-weight:900" onclick="document.getElementById('popup').style.display='none'">OK</button></div></div>
+<!-- BET MODAL PHOTO JEVU -->
+<div id="betModal">
+<div class="betSheet">
+<div class="betHead"><h3 id="betTitle">Select Small</h3></div>
+<div class="betBody">
+<div class="betRow"><span>Balance</span><div class="amtBtns"><button class="amtBtn active" data-a="1" onclick="setAmt(1)">1</button><button class="amtBtn" data-a="10" onclick="setAmt(10)">10</button><button class="amtBtn" data-a="100" onclick="setAmt(100)">100</button><button class="amtBtn" data-a="1000" onclick="setAmt(1000)">1000</button></div></div>
+<div class="betRow"><span>Quantity</span><div class="qtyBox"><button onclick="changeQty(-1)">-</button><input id="qty" value="1" type="number"><button onclick="changeQty(1)">+</button></div></div>
+<div class="betRow"><span></span><div class="multBtns"><button class="multBtn active" data-m="1" onclick="setMult(1)">X1</button><button class="multBtn" data-m="5" onclick="setMult(5)">X5</button><button class="multBtn" data-m="10" onclick="setMult(10)">X10</button><button class="multBtn" data-m="20" onclick="setMult(20)">X20</button><button class="multBtn" data-m="50" onclick="setMult(50)">X50</button><button class="multBtn" data-m="100" onclick="setMult(100)">X100</button></div></div>
+<div class="agree">🟡 I agree <span>(Pre-sale rules)</span></div>
+</div>
+<div class="betFoot"><button class="cancel" onclick="closeBet()">Cancel</button><button class="confirm" id="confirmBtn" onclick="confirmBet()">Total amount ₹1.00</button></div>
+</div>
+</div>
+
+<div id="resultPop" onclick="this.style.display='none'"><div class="pop" id="popBox"><h1 id="popTitle">WIN</h1><p id="popMsg"></p><br><button style="padding:10px 20px;background:gold;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
 
 <script>
 let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
-let data=JSON.parse(localStorage.getItem('rajaFinalV3')||'null')||defaultData;
+let data=JSON.parse(localStorage.getItem('rajaFinalV4')||'null')||defaultData;
 let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
 if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
-let currentSec=data.currentSec, page=1, bal=data.bal;
-function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaFinalV3', JSON.stringify(data)); }
-function setMax(){ document.getElementById('betAmt').value=bal; }
+let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaFinalV4', JSON.stringify(data)); }
 
 let numsDiv=document.getElementById('nums');
-for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>placeBet('number',i); numsDiv.appendChild(d); }
-
+for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d); }
 document.querySelectorAll('.mode').forEach(m=>{ m.onclick=()=>{ currentSec=parseInt(m.dataset.s); document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active')); m.classList.add('active'); page=1; render(); save(); } });
 
-function placeBet(type,val){
-  let amt=parseInt(document.getElementById('betAmt').value);
-  if(!amt||amt<=0) return alert('Amount nakho');
-  if(amt>bal) return alert('Wallet ma etla paisa nathi! Max: '+bal);
-  if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec ma bet bandh');
-  bal-=amt; data.bets[currentSec].push({type,val,amt,period:data.periods[currentSec]});
-  save(); render();
+function openBet(type,val,title){
+  if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bet bandh');
+  selType=type; selVal=val; document.getElementById('betTitle').innerText=title;
+  document.getElementById('betModal').style.display='flex'; updateTotal();
+}
+function closeBet(){ document.getElementById('betModal').style.display='none'; }
+function setAmt(a){ selAmt=a; document.querySelectorAll('.amtBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.a)==a)); updateTotal(); }
+function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.m)==m)); updateTotal(); }
+function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal(); }
+document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal(); });
+function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total amount ₹'+total.toFixed(2); }
+
+function confirmBet(){
+  let total=selAmt*selQty*selMult;
+  if(total>bal) return alert('Balance nathi! Tamara paase ₹'+bal+' che');
+  bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total,period:data.periods[currentSec]});
+  save(); render(); closeBet();
 }
 
 function render(){
   document.getElementById('bal').innerText=bal;
-  let name=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min';
-  document.getElementById('modeName').innerText=name;
   document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0');
+  document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min';
   [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); document.getElementById('live'+sec).innerText=mm+':'+ss; });
-  let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : 'Koi bet nathi';
+  let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : '';
   renderHistory();
 }
-function renderHistory(){
-  let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1;
-  document.getElementById('pageInfo').innerText=page+'/'+totalPages;
-  let slice=list.slice((page-1)*12,page*12);
-  let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`;
-  slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; });
-  document.getElementById('hist').innerHTML=html;
-}
+function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html; }
 function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory(); }
-
-function showPop(win, msg){
-  let box=document.getElementById('popBox'); document.getElementById('popup').style.display='flex';
-  if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; document.getElementById('popTitle').style.color='#00ff88'; }
-  else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; document.getElementById('popTitle').style.color='#ff4444'; }
-  document.getElementById('popMsg').innerText=msg;
-}
-
-function checkWin(sec,num){
-  let color=num==0||num==5?'violet':num%2==0?'red':'green';
-  if(num==0) color='redviolet'; if(num==5) color='greenviolet';
-  let bs=num>=5?'big':'small';
-  let totalWin=0, totalLoss=0;
-  data.bets[sec].forEach(b=>{
+function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; } document.getElementById('popMsg').innerText=msg; }
+function checkWin(sec,num){ let color=num==0||num==5?'violet':num%2==0?'red':'green'; if(num==0) color='redviolet'; if(num==5) color='greenviolet'; let bs=num>=5?'big':'small'; let totalWin=0,totalLoss=0; data.bets[sec].forEach(b=>{ if(b.type=='color'){ if(b.val=='violet'&&(num==0||num==5)) totalWin+=b.amt*4.5; else if(b.val==color|| (b.val=='red'&&(num==0||color.includes('red'))) || (b.val=='green'&&(num==5||color.includes('green')))) { if(!(b.val=='violet'&&(num!=0&&num!=5))) totalWin+=b.amt*2; else totalLoss+=b.amt; } else if(!(b.val=='red'&&num==0)&&!(b.val=='green'&&num==5)){ if(!(b.val!='violet')){} else totalLoss+=b.amt; } } if(b.type=='size'&&b.val==bs) totalWin+=b.amt*2; else if(b.type=='size') totalLoss+=b.amt; if(b.type=='number'&&b.val==num) totalWin+=b.amt*9; else if(b.type=='number') totalLoss+=b.amt; }); // simplified color logic
+  // correct simple logic for demo
+  let realWin=0; data.bets[sec].forEach(b=>{
+    let w=false;
     if(b.type=='color'){
-      if(b.val=='violet' && (num==0||num==5)) totalWin+=b.amt*4.5;
-      else if(b.val==color) totalWin+=b.amt*2;
-      else totalLoss+=b.amt;
+      if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true;
+      if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true;
+      if(b.val=='violet' && [0,5].includes(num)) w=true;
     }
-    if(b.type=='size' && b.val==bs) totalWin+=b.amt*2; else if(b.type=='size') totalLoss+=b.amt;
-    if(b.type=='number' && b.val==num) totalWin+=b.amt*9; else if(b.type=='number') totalLoss+=b.amt;
+    if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true;
+    if(b.type=='number' && b.val==num) w=true;
+    if(w){
+      let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2);
+      realWin+=b.amt*mult;
+    }
   });
-  if(totalWin>0){ bal+=Math.floor(totalWin); showPop(true, 'You Win ₹'+Math.floor(totalWin)+' (Number: '+num+')'); }
-  else if(data.bets[sec].length>0){ showPop(false, 'You Loss ₹'+totalLoss+' (Number: '+num+')'); }
+  if(realWin>0){ bal+=Math.floor(realWin); showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); }
   data.bets[sec]=[];
 }
-
-setInterval(()=>{
-  [30,60,180,300].forEach(sec=>{
-    data.timeLefts[sec]--;
-    if(data.timeLefts[sec]<=0){
-      let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢';
-      let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0');
-      checkWin(sec,num);
-      data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec;
-      if(sec==currentSec) page=1;
-    }
-  });
-  let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0');
-  document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1];
-  render(); if(tl%2==0) save();
-},1000);
-
+setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; render(); if(tl%2==0) save(); },1000);
 render();
 </script>
 </body>
-                                                                                                                                                                                     </html>
+                                                                                                                                                                                                                                                   </html>
+                                                                                                                                                                                     
