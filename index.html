@@ -8,140 +8,170 @@ body{background:#0a3328;display:flex;justify-content:center}
 .mobile{width:400px;max-width:100%;background:#011a12;min-height:100vh;padding:10px}
 .wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white}
 .wallet h1{color:#ffd700;font-size:28px}
-.btns{display:flex;gap:10px;justify-content:center;margin-top:10px}
-.btns button{padding:8px 25px;border-radius:20px;border:none;font-weight:900}
-.with{background:#00c853;color:white}.dep{background:#222;color:white}
 .modes{display:flex;gap:8px;margin:12px 0}
-.mode{flex:1;background:#1a3d33;border-radius:10px;padding:8px;text-align:center;color:#aaa;font-size:12px;border:2px solid transparent;cursor:pointer}
+.mode{flex:1;background:#1a3d33;border-radius:10px;padding:8px;text-align:center;color:#aaa;font-size:12px;border:2px solid transparent;cursor:pointer;position:relative}
 .mode.active{background:#00c853;color:white;border-color:#00ff88}
+.mode.live{font-size:10px;color:#ffd700;display:block}
 .timeBox{background:#0d4a3a;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center;color:white}
 .timer b{background:#222;padding:5px 6px;border-radius:5px;font-size:20px;color:#ffd700}
 .colors{display:flex;gap:10px;margin:10px 0}
-.c{flex:1;padding:10px;border-radius:20px;text-align:center;font-weight:900;border:none;cursor:pointer}
+.c{flex:1;padding:10px;border-radius:20px;text-align:center;font-weight:900;border:none}
 .green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
 .numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0}
 .n{width:50px;height:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;font-size:22px;color:white;cursor:pointer}
 .n.rednum{background:linear-gradient(#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
 .bigsmall{display:flex;gap:10px;margin:15px 0}
-.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900;cursor:pointer}
+.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900}
 .big{background:#ffb74d}.small{background:#64b5f6}
 .history{background:#0d4a3a;border-radius:12px;padding:10px;color:white}
 .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ffffff10;font-size:13px}
 .pager{display:flex;justify-content:center;align-items:center;gap:20px;padding:15px;background:#0d4a3a;margin-top:10px;border-radius:12px;color:white}
-.pager button{padding:8px 15px;border-radius:8px;border:none;background:#00c853;color:white;font-weight:900;font-size:16px;cursor:pointer}
+.pager button{padding:8px 15px;border-radius:8px;border:none;background:#00c853;color:white;font-weight:900;font-size:16px}
 </style>
 </head>
 <body>
 <div class="mobile">
-<div class="wallet"><h1>₹<span id="bal">5000.00</span></h1><p>WALLET BALANCE</p></div>
+<div class="wallet"><h1>₹<span id="bal">5000.00</span></h1><p>👑 RAJA CLUB - WALLET</p></div>
+
 <div class="modes" id="modes">
-<div class="mode active" data-s="30">WinGo<br>30sec</div>
-<div class="mode" data-s="60">WinGo<br>1 Min</div>
-<div class="mode" data-s="180">WinGo<br>3 Min</div>
-<div class="mode" data-s="300">WinGo<br>5 Min</div>
+<div class="mode active" data-s="30">WinGo<br>30sec<span class="live" id="live30">00:30</span></div>
+<div class="mode" data-s="60">WinGo<br>1 Min<span class="live" id="live60">01:00</span></div>
+<div class="mode" data-s="180">WinGo<br>3 Min<span class="live" id="live180">03:00</span></div>
+<div class="mode" data-s="300">WinGo<br>5 Min<span class="live" id="live300">05:00</span></div>
 </div>
+
 <div class="timeBox">
 <div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:11px"></span></div>
 <div style="text-align:right">Time remaining<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">3</b><b id="t4">0</b></span></div>
 </div>
+
 <div class="colors">
-<button class="c green" onclick="bet('green')">Green</button>
-<button class="c violet" onclick="bet('violet')">Violet</button>
-<button class="c red" onclick="bet('red')">Red</button>
+<button class="c green">Green</button><button class="c violet">Violet</button><button class="c red">Red</button>
 </div>
 <div class="numbers" id="nums"></div>
-<div class="bigsmall"><button class="big" onclick="bet('big')">Big</button><button class="small" onclick="bet('small')">Small</button></div>
+<div class="bigsmall"><button class="big">Big</button><button class="small">Small</button></div>
 <div class="history" id="hist"></div>
 <div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div>
-<button onclick="clearGame()" style="width:100%;margin-top:15px;padding:10px;background:#ff000030;color:#ff4444;border:1px solid red;border-radius:10px">Game Delete Karo (Reset)</button>
+<button onclick="localStorage.clear();location.reload()" style="width:100%;margin-top:10px;padding:8px;background:#ff000030;color:#ff4444;border:1px solid red;border-radius:10px">Reset Game</button>
 </div>
 
 <script>
-let currentSec=30, timeLeft=30, periodBase=20261002001, page=1;
-let data = JSON.parse(localStorage.getItem('rajaClubFinal') || '{}');
-let histories = data.histories || {30:[],60:[],180:[],300:[]};
-let periods = data.periods || {30:2001,60:2001,180:2001,300:2001};
-let lastTime = data.lastTime || Date.now();
-if(data.currentSec) currentSec=data.currentSec;
-if(data.timeLeft){
-  let elapsed = Math.floor((Date.now()-lastTime)/1000);
-  timeLeft = data.timeLeft - elapsed;
-  if(timeLeft<=0) timeLeft = currentSec + (timeLeft % currentSec);
+let currentSec = 30, page=1;
+let defaultData = {
+  timeLefts:{30:30,60:60,180:180,300:300},
+  periods:{30:2001,60:2001,180:2001,300:2001},
+  histories:{30:[],60:[],180:[],300:[]},
+  lastTime:Date.now(),
+  bal:5000, currentSec:30
+};
+let data = JSON.parse(localStorage.getItem('rajaClubV2')||'null') || defaultData;
+
+// GAM BAHAR HATA TYARE NO TIME CALCULATE KARO
+let elapsed = Math.floor((Date.now()-data.lastTime)/1000);
+if(elapsed>0){
+  [30,60,180,300].forEach(sec=>{
+    let tl = data.timeLefts[sec];
+    let totalElapsed = elapsed;
+    while(totalElapsed>0){
+      if(totalElapsed>=tl){
+        totalElapsed-=tl;
+        // result generate
+        let num=Math.floor(Math.random()*10);
+        let bs=num>=5?'Big':'Small';
+        let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢';
+        let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0');
+        data.histories[sec].unshift({period:pid,num,bs,col});
+        data.periods[sec]++;
+        tl = sec; // reset
+      }else{
+        tl-=totalElapsed;
+        totalElapsed=0;
+      }
+    }
+    data.timeLefts[sec]=tl;
+  });
 }
-let bal = data.bal || 5000;
+currentSec = data.currentSec;
+let bal = data.bal;
 
 function save(){
- localStorage.setItem('rajaClubFinal', JSON.stringify({
-  currentSec, timeLeft, histories, periods, lastTime:Date.now(), bal, page
- }));
+  data.lastTime=Date.now();
+  data.currentSec=currentSec;
+  data.bal=bal;
+  localStorage.setItem('rajaClubV2', JSON.stringify(data));
 }
 
 let numsDiv=document.getElementById('nums');
 for(let i=0;i<10;i++){
  let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i;
- d.onclick=()=>bet('num'+i); numsDiv.appendChild(d);
+ numsDiv.appendChild(d);
 }
 
 document.querySelectorAll('.mode').forEach(m=>{
- m.onclick=()=>{
-  document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));
-  m.classList.add('active');
-  currentSec=parseInt(m.dataset.s);
-  timeLeft=currentSec;
-  page=1;
-  render(); save();
- }
+  m.onclick=()=>{
+    currentSec=parseInt(m.dataset.s);
+    document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));
+    m.classList.add('active');
+    page=1; render(); save();
+  }
 });
 
 function render(){
- let modeName = currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min';
- document.getElementById('modeName').innerText=modeName;
- document.getElementById('period').innerText='20261002'+currentSec+String(periods[currentSec]).padStart(4,'0');
- document.getElementById('bal').innerText=bal+'.00';
- renderHistory();
+  document.getElementById('bal').innerText=bal+'.00';
+  let modeName = currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min';
+  document.getElementById('modeName').innerText=modeName;
+  document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0');
+  // live small timers update
+  [30,60,180,300].forEach(sec=>{
+    let tl=data.timeLefts[sec];
+    let mm=String(Math.floor(tl/60)).padStart(2,'0');
+    let ss=String(tl%60).padStart(2,'0');
+    document.getElementById('live'+sec).innerText=mm+':'+ss;
+  });
+  renderHistory();
 }
 function renderHistory(){
- let list = histories[currentSec] || [];
- let totalPages = Math.max(1, Math.ceil(list.length/12));
- if(page>totalPages) page=1;
- document.getElementById('pageInfo').innerText=page+'/'+totalPages;
- let start=(page-1)*12, end=start+12;
- let slice=list.slice(start,end);
- let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>Number</span><span>Big Small</span><span>Color</span></div>`;
- slice.forEach(r=>{
-  html+=`<div class="row"><span>${r.period}</span><span style="color:${r.num%2==0?'#ff4444':'#00ff88'};font-weight:900;font-size:18px">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`;
- });
- document.getElementById('hist').innerHTML=html;
+  let list=data.histories[currentSec];
+  let totalPages=Math.max(1,Math.ceil(list.length/12));
+  if(page>totalPages) page=1;
+  document.getElementById('pageInfo').innerText=page+'/'+totalPages;
+  let slice=list.slice((page-1)*12, page*12);
+  let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>Number</span><span>Big Small</span><span>Color</span></div>`;
+  slice.forEach(r=>{ html+=`<div class="row"><span>${r.period}</span><span style="color:${r.num%2==0?'#ff4444':'#00ff88'};font-weight:900;font-size:18px">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; });
+  document.getElementById('hist').innerHTML=html;
 }
 function changePage(d){
- let totalPages=Math.max(1, Math.ceil(histories[currentSec].length/12));
- page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1;
- renderHistory(); save();
+  let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12));
+  page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1;
+  renderHistory(); save();
 }
-function addResult(){
- let num=Math.floor(Math.random()*10);
- let bs=num>=5?'Big':'Small';
- let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢';
- let periodId='20261002'+currentSec+String(periods[currentSec]).padStart(4,'0');
- histories[currentSec].unshift({period:periodId,num,bs,col:col});
- periods[currentSec]++;
- page=1; // nava result aave etle pehlu page
- render(); save();
-}
-function bet(type){ if(bal<10) return alert('Balance low'); bal-=10; document.getElementById('bal').innerText=bal+'.00'; save(); }
 
 setInterval(()=>{
- timeLeft--; if(timeLeft<=0){ addResult(); timeLeft=currentSec; }
- let m=Math.floor(timeLeft/60).toString().padStart(2,'0');
- let s=(timeLeft%60).toString().padStart(2,'0');
- document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];
- document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1];
- if(timeLeft%5==0) save();
+  [30,60,180,300].forEach(sec=>{
+    data.timeLefts[sec]--;
+    if(data.timeLefts[sec]<=0){
+      let num=Math.floor(Math.random()*10);
+      let bs=num>=5?'Big':'Small';
+      let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢';
+      let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0');
+      data.histories[sec].unshift({period:pid,num,bs,col});
+      data.periods[sec]++;
+      data.timeLefts[sec]=sec;
+      if(sec==currentSec) page=1;
+    }
+  });
+  // main timer show
+  let tl=data.timeLefts[currentSec];
+  let m=String(Math.floor(tl/60)).padStart(2,'0');
+  let s=String(tl%60).padStart(2,'0');
+  document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];
+  document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1];
+  render();
+  if(tl%5==0) save();
 },1000);
 
-function clearGame(){ if(confirm('Aakhu game delete karvu che?')){ localStorage.removeItem('rajaClubFinal'); location.reload(); }}
-
 render();
+setInterval(save,3000);
 </script>
 </body>
- </html>
+                                                                                </html>
