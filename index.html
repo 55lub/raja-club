@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0a3328;display:flex;justify-content:center}
+.mobile{width:400px;max-width:100%;background:#011a12;min-height:100vh;padding:10px}
+.wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white}
+.wallet h1{color:#ffd700;font-size:28px}
+.btns{display:flex;gap:10px;justify-content:center;margin-top:10px}
+.btns button{padding:8px 25px;border-radius:20px;border:none;font-weight:900}
+.with{background:#00c853;color:white}.dep{background:#222;color:white}
+.modes{display:flex;gap:8px;margin:12px 0}
+.mode{flex:1;background:#1a3d33;border-radius:10px;padding:8px;text-align:center;color:#aaa;font-size:12px;border:2px solid transparent}
+.mode.active{background:#00c853;color:white;border-color:#00ff88}
+.timeBox{background:#0d4a3a;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center;color:white;margin-bottom:10px}
+.timer b{background:#222;padding:5px 6px;border-radius:5px;font-size:20px;color:#ffd700}
+.colors{display:flex;gap:10px;margin:10px 0}
+.c{flex:1;padding:10px;border-radius:20px;text-align:center;font-weight:900;border:none}
+.green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
+.numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0}
+.n{width:50px;height:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;font-size:22px;color:white;cursor:pointer;border:3px solid #222}
+.n.rednum{background:linear-gradient(180deg,#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(180deg,#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
+.bigsmall{display:flex;gap:10px;margin:15px 0}
+.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900}
+.big{background:#ffb74d}.small{background:#64b5f6}
+.history{background:#0d4a3a;border-radius:12px;padding:10px;color:white;margin-top:10px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ffffff10;font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+<div class="mobile">
+<div class="wallet">
+<h1>₹<span id="bal">5000.00</span></h1>
+<p>💰 WALLET BALANCE</p>
+<div class="btns"><button class="with">Withdraw</button><button class="dep">Deposit</button></div>
+</div>
+
+<div class="modes">
+<div class="mode active">WinGo<br>30sec</div><div class="mode">WinGo<br>1 Min</div><div class="mode">WinGo<br>3 Min</div><div class="mode">WinGo<br>5 Min</div>
+</div>
+
+<div class="timeBox">
+<div>WinGo 30sec<br><span id="period" style="font-size:10px">20261002001</span></div>
+<div style="text-align:right">Time remaining<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">3</b><b id="t4">0</b></span></div>
+</div>
+
+<div class="colors">
+<button class="c green" onclick="bet('green')">Green</button>
+<button class="c violet" onclick="bet('violet')">Violet</button>
+<button class="c red" onclick="bet('red')">Red</button>
+</div>
+
+<div class="numbers" id="nums"></div>
+
+<div class="bigsmall">
+<button class="big" onclick="bet('big')">Big</button>
+<button class="small" onclick="bet('small')">Small</button>
+</div>
+
+<div class="history" id="hist"></div>
+</div>
+
+<script>
+let bal=5000, time=30, p=20261002001;
+let numsDiv=document.getElementById('nums');
+for(let i=0;i<10;i++){
+ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i;
+ d.onclick=()=>bet('num'+i); numsDiv.appendChild(d);
+}
+function bet(type){ if(bal<10) return alert('Balance low'); bal-=10; document.getElementById('bal').innerText=bal+'.00'; alert(type+' par 10 lagya! Result ni raah juo')}
+
+function updateTimer(){
+ time--; if(time<0){time=30; p++; let res=Math.floor(Math.random()*10); addHistory(res); }
+ let s=time.toString().padStart(2,'0'); document.getElementById('t3').innerText=s[0]; document.getElementById('t4').innerText=s[1];
+ document.getElementById('period').innerText=p;
+}
+function addHistory(num){
+ let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢';
+ let row=`<div class="row"><span>${p}</span><span style="color:${num%2==0?'#ff4444':'#00ff88'};font-weight:900;font-size:18px">${num}</span><span>${bs}</span><span>${col}</span></div>`;
+ document.getElementById('hist').innerHTML=row+document.getElementById('hist').innerHTML;
+ bal+= Math.random()>0.5? 20:0; document.getElementById('bal').innerText=bal+'.00';
+}
+setInterval(updateTimer,1000);
+// init history
+for(let i=0;i<10;i++) addHistory(Math.floor(Math.random()*10));
+</script>
+</body>
+                  </html>
