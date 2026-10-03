@@ -17,9 +17,9 @@ body{background:#000;display:flex;justify-content:center}
 /* AUTH */
 .authBg{background:linear-gradient(180deg,#0e9b6a 0%, #00120c 60%);min-height:100vh;padding:0;display:flex;flex-direction:column}
 .authHeader{text-align:center;padding:30px 20px 20px 20px}
-.authLogo{font-size:40px;font-weight:900;color:#ffd700;letter-spacing:1px}
+.authLogo{font-size:40px;font-weight:900;color:#ffd700}
 .authSub{color:#d4b072;font-size:13px;margin-top:6px}
-.authBox{background:#0f2f26;margin:20px 16px;border-radius:20px;padding:22px 18px;border:1px solid #1a3d32;box-shadow:0 10px 30px #00000050}
+.authBox{background:#0f2f26;margin:20px 16px;border-radius:20px;padding:22px 18px;border:1px solid #1a3d32}
 .authTitle{color:white;font-size:22px;font-weight:900;text-align:center;margin-bottom:4px}
 .authDesc{color:#8aa39b;font-size:12px;text-align:center;margin-bottom:18px}
 .inputGroup{margin-bottom:12px;position:relative}
@@ -29,11 +29,17 @@ body{background:#000;display:flex;justify-content:center}
 .inputIcon{position:absolute;left:14px;top:34px;font-size:18px;color:#6a8a7f}
 .inviteAutoBox{background:#081a14;border:1px dashed #d4b072;border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .inviteAutoLabel{color:#8aa39b;font-size:11px}
-.inviteAutoCode{color:#ffd700;font-size:16px;font-weight:900;letter-spacing:1px}
-.authBtn{width:100%;background:linear-gradient(90deg,#d4b072,#b8965a);color:white;border:none;padding:14px;border-radius:25px;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer;box-shadow:0 4px 15px #d4b07250}
+.inviteAutoCode{color:#ffd700;font-size:16px;font-weight:900}
+.authBtn{width:100%;background:linear-gradient(90deg,#d4b072,#b8965a);color:white;border:none;padding:14px;border-radius:25px;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer}
 .authLink{color:#8aa39b;font-size:13px;text-align:center;margin-top:14px}
 .authLink span{color:#d4b072;font-weight:900;cursor:pointer;text-decoration:underline}
 .errorMsg{color:#ff6b6b;font-size:11px;margin-top:4px;display:none}
+
+/* BONUS BADGE */
+.bonusBadge{background:linear-gradient(90deg,#ff6b6b,#ff9800);color:white;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:900;display:inline-block;margin-left:6px}
+.lockBadge{background:#ff3d3d;color:white;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:900}
+.depositFirstNotice{background:#ff3d3d;color:white;padding:10px 14px;border-radius:12px;margin:10px;font-size:12px;font-weight:700;text-align:center;display:none}
+.depositFirstNotice.show{display:block}
 
 /* HOME */
 .homeTop{background:linear-gradient(135deg,#0d4a3a,#00c853);padding:20px 15px;color:white;border-radius:0 0 20px 20px}
@@ -47,6 +53,9 @@ body{background:#000;display:flex;justify-content:center}
 .wigoCard{background:white;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 12px #00000015;cursor:pointer;border-left:5px solid #00c853}
 .wigoCard h3{color:#0d4a3a;font-size:16px;font-weight:900}
 .liveTime{font-size:18px;color:#ff3d3d;font-weight:900;margin-top:8px;background:#ff000012;padding:6px;border-radius:10px}
+.bonusInfoBox{background:#fff3cd;border:1px solid #ffc107;border-radius:12px;padding:10px 14px;margin:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.bonusInfoText{color:#856404;font-size:12px;font-weight:600}
+.bonusInfoAmt{color:#ff3d3d;font-weight:900;font-size:14px}
 
 /* ACCOUNT */
 .accTopBg{background:linear-gradient(180deg,#0e9b6a 0%, #081a14 100%);padding:22px 16px 16px 16px}
@@ -159,52 +168,26 @@ body{background:#000;display:flex;justify-content:center}
 .mainBtn{width:100%;padding:14px;background:#00c853;color:white;border:none;border-radius:12px;font-weight:900;margin-top:10px;cursor:pointer}
 .closeBtn{width:100%;padding:10px;background:#333;color:white;border:none;border-radius:10px;margin-top:8px;cursor:pointer}
 #resultPop,#infoPop{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;display:none;justify-content:center;align-items:center;z-index:3000}
-.pop{width:300px;background:#222;border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
+.pop{width:320px;background:#222;border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
 </style>
 </head>
 <body>
 <div class="mobile">
 
-<!-- REGISTER - ACTIVE BY DEFAULT - 100% AVSE -->
+<!-- REGISTER -->
 <div id="registerScreen" class="screen active">
   <div class="authBg">
-    <div class="authHeader">
-      <div class="authLogo">👑 RAJA CLUB</div>
-      <div class="authSub">Fair & Trusted Gaming Platform</div>
-    </div>
+    <div class="authHeader"><div class="authLogo">👑 RAJA CLUB</div><div class="authSub">Register Karo - ₹34 Bonus Milega</div></div>
     <div class="authBox">
       <div class="authTitle">Register</div>
-      <div class="authDesc">Create account - ek j var - mobile no + password</div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Mobile Number *</label>
-        <div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="regMobile" type="tel" placeholder="Enter 10 digit mobile" maxlength="10"></div>
-        <div class="errorMsg" id="regMobileErr">10 digit mobile nakho</div>
-      </div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Password *</label>
-        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regPass" type="password" placeholder="Set password"></div>
-      </div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Confirm Password *</label>
-        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regConfirm" type="password" placeholder="Confirm password"></div>
-        <div class="errorMsg" id="regConfirmErr">Password same nathi</div>
-      </div>
-
-      <div class="inviteAutoBox">
-        <div><div class="inviteAutoLabel">Mera Invite Number (Auto Generate)</div><div style="color:#8aa39b;font-size:10px">Har user ko alag milega</div></div>
-        <div class="inviteAutoCode" id="autoInvitePreview">2516XXXXXX</div>
-      </div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Invitation Code (Optional)</label>
-        <div style="position:relative"><span class="inputIcon">🎟️</span><input class="inputField" id="regInviteInput" type="text" placeholder="Jisne invite kiya uska code"></div>
-      </div>
-
-      <button class="authBtn" onclick="doRegister()">REGISTER NOW</button>
-      <div class="authLink">Already have account? <span onclick="showLogin()">Login Karo</span></div>
+      <div class="authDesc" style="color:#ffd700">🎁 New user ko ₹34 bonus - par bet ke liye deposit jaruri</div>
+      <div class="inputGroup"><label class="inputLabel">Mobile Number *</label><div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="regMobile" type="tel" placeholder="10 digit mobile" maxlength="10"></div><div class="errorMsg" id="regMobileErr">10 digit mobile nakho</div></div>
+      <div class="inputGroup"><label class="inputLabel">Password *</label><div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regPass" type="password" placeholder="Set password"></div></div>
+      <div class="inputGroup"><label class="inputLabel">Confirm Password *</label><div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regConfirm" type="password" placeholder="Confirm password"></div><div class="errorMsg" id="regConfirmErr">Password same nathi</div></div>
+      <div class="inviteAutoBox"><div><div class="inviteAutoLabel">Mera Invite Number (Auto)</div><div style="color:#8aa39b;font-size:10px">Har user ko alag</div></div><div class="inviteAutoCode" id="autoInvitePreview">2516XXXXXX</div></div>
+      <div class="inputGroup"><label class="inputLabel">Invitation Code (Optional)</label><div style="position:relative"><span class="inputIcon">🎟️</span><input class="inputField" id="regInviteInput" type="text" placeholder="Jisne invite kiya uska code"></div></div>
+      <button class="authBtn" onclick="doRegister()">REGISTER + GET ₹34 BONUS</button>
+      <div class="authLink">Already have? <span onclick="showLogin()">Login</span></div>
     </div>
   </div>
 </div>
@@ -212,27 +195,13 @@ body{background:#000;display:flex;justify-content:center}
 <!-- LOGIN -->
 <div id="loginScreen" class="screen">
   <div class="authBg">
-    <div class="authHeader">
-      <div class="authLogo">👑 RAJA CLUB</div>
-      <div class="authSub">Welcome Back! Varamvar Login</div>
-    </div>
+    <div class="authHeader"><div class="authLogo">👑 RAJA CLUB</div><div class="authSub">Welcome Back!</div></div>
     <div class="authBox">
       <div class="authTitle">Login</div>
-      <div class="authDesc">Har bar login karna padega</div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Mobile Number</label>
-        <div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="loginMobile" type="tel" placeholder="Registered mobile" maxlength="10"></div>
-      </div>
-
-      <div class="inputGroup">
-        <label class="inputLabel">Password</label>
-        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="loginPass" type="password" placeholder="Your password"></div>
-        <div class="errorMsg" id="loginErr">Mobile ya password galat hai</div>
-      </div>
-
+      <div class="inputGroup"><label class="inputLabel">Mobile Number</label><div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="loginMobile" type="tel" placeholder="Registered mobile" maxlength="10"></div></div>
+      <div class="inputGroup"><label class="inputLabel">Password</label><div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="loginPass" type="password" placeholder="Password"></div><div class="errorMsg" id="loginErr">Mobile ya password galat</div></div>
       <button class="authBtn" onclick="doLogin()">LOGIN NOW</button>
-      <div class="authLink">No account? <span onclick="showRegister()">Register Karo</span></div>
+      <div class="authLink">No account? <span onclick="showRegister()">Register</span></div>
     </div>
   </div>
 </div>
@@ -242,8 +211,10 @@ body{background:#000;display:flex;justify-content:center}
   <div class="homeTop">
     <h1 style="color:#ffd700;text-align:center">👑 RAJA CLUB</h1>
     <div style="color:white;text-align:center;font-size:11px;margin-top:6px">UID: <span id="homeUid">-</span> | Invite: <span id="homeInvite">-</span></div>
-    <div class="balRow"><span>Balance: ₹<span id="homeBal">5000</span></span><div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div></div>
+    <div class="balRow"><span>Balance: ₹<span id="homeBal">0</span> <span id="homeBonusTag"></span></span><div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div></div>
   </div>
+  <div class="bonusInfoBox" id="bonusInfoHome"><div class="bonusInfoText">🎁 ₹34 Bonus Mila! Bet ke liye pehla deposit karo</div><div class="bonusInfoAmt" id="bonusAmtHome">₹34</div></div>
+  <div class="depositFirstNotice" id="depositNoticeHome">🔒 Bet lagane ke liye pehla deposit karna jaruri hai! ₹34 bonus lock hai.</div>
   <div class="homeSection">
     <div class="lotTitle">🎮 Lottery Games - Click to Play</div>
     <div class="wigoGrid">
@@ -293,18 +264,19 @@ body{background:#000;display:flex;justify-content:center}
         <div class="uidPill">UID | <span id="accUid">0000000</span></div>
         <div class="uidPill" style="background:#1a9c6b">INVITE | <span id="accInvite">2516000000</span></div>
         <div class="lastLogin">Mobile: <span id="accMobile">-</span></div>
+        <div class="lastLogin">Bonus: ₹<span id="accBonus">34</span> <span id="accBonusLock" class="lockBadge">LOCKED 🔒</span></div>
         <div class="lastLogin">Last login: <span id="lastLoginTime">-</span></div>
         <div style="color:#ff6b6b;font-size:12px;margin-top:6px;cursor:pointer" onclick="logout()">Logout ›</div>
       </div>
     </div>
   </div>
   <div class="totalBoxPhoto">
-    <div class="totalLabel">Total balance</div>
+    <div class="totalLabel">Total balance <span id="totalBonusInfo" style="color:#ff9800;font-size:11px">(₹34 bonus locked)</span></div>
     <div class="totalRow"><div class="totalAmount">₹<span id="accBal">0.00</span> <span style="cursor:pointer" onclick="render()">⟲</span></div><button class="enterWalletBtn" onclick="openDeposit()">Enter wallet</button></div>
     <div class="dividerLine"></div>
     <div class="fourIconsRow"><div class="iconItem"><div class="iconCircle">💼</div><div class="iconLabel">ARWallet</div></div><div class="iconItem" onclick="openDeposit()"><div class="iconCircle">💰</div><div class="iconLabel">Deposit</div></div><div class="iconItem" onclick="openWithdraw()"><div class="iconCircle">💳</div><div class="iconLabel">Withdraw</div></div><div class="iconItem"><div class="iconCircle">🔰</div><div class="iconLabel">VIP</div></div></div>
   </div>
-  <div class="safeBoxPhoto"><div class="safeIconBox">🏦</div><div style="flex:1"><div class="safeTitle">Safe</div><div class="safeDesc">Daily interest 0.1% income every 1 min.</div></div><div class="safeAmount">₹0.00 ›</div></div>
+  <div class="safeBoxPhoto"><div class="safeIconBox">🏦</div><div style="flex:1"><div class="safeTitle">Safe</div><div class="safeDesc">Daily interest 0.1%</div></div><div class="safeAmount">₹0.00 ›</div></div>
   <div class="grid4Boxes"><div class="smallBox"><div class="smallIcon" style="background:#4a8cff">📘</div><div><h4>Game History</h4><p>My game history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#3dd68c">📗</div><div><h4>Transaction</h4><p>My transaction history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#8b4a4a">📕</div><div><h4>Deposit</h4><p>My deposit history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#6b4a1a">💼</div><div><h4>Withdraw</h4><p>My withdraw history</p></div></div></div>
   <div class="bottomListBox"><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🔔</div>Notification</div><div class="listArrow">›</div></div><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎁</div>Gifts</div><div class="listArrow">›</div></div><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎟️</div>My Top-Up Coupons</div><div class="listArrow">›</div></div></div>
 </div>
@@ -312,7 +284,8 @@ body{background:#000;display:flex;justify-content:center}
 <!-- GAME -->
 <div id="gameScreen" class="screen">
   <div class="gameTop"><button onclick="goHomeFromGame()">←</button><span id="gameTitle">WinGo 30s</span><span style="margin-left:auto;font-size:12px" id="period"></span></div>
-  <div class="wallet"><h1>₹<span id="bal">5000</span></h1><p id="myBets" style="font-size:11px;color:#ffd700;margin-top:4px"></p></div>
+  <div class="wallet"><h1>₹<span id="bal">0</span> <span id="balLock" style="font-size:12px"></span></h1><p id="myBets" style="font-size:11px;color:#ffd700;margin-top:4px"></p></div>
+  <div class="depositFirstNotice" id="depositNoticeGame">🔒 Aapke pass ₹34 bonus hai par bet lagane ke liye pehla deposit karna jaruri hai! Deposit karo tabhi game khel sakte ho.</div>
   <div class="modes"><div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div></div>
   <div class="timeBox"><div><span id="modeName">WinGo 30sec</span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
   <div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div>
@@ -333,7 +306,7 @@ body{background:#000;display:flex;justify-content:center}
 </div>
 
 <div id="betModal"><div class="betSheet"><div class="betHead"><h3 id="betTitle">Select</h3></div><div class="betBody"><div class="betRow"><span>Balance</span><div style="display:flex;gap:6px"><button class="amtBtn active" data-a="1" onclick="setAmt(1)">1</button><button class="amtBtn" data-a="10" onclick="setAmt(10)">10</button><button class="amtBtn" data-a="100" onclick="setAmt(100)">100</button><button class="amtBtn" data-a="1000" onclick="setAmt(1000)">1000</button></div></div><div class="betRow"><span>Quantity</span><div class="qtyBox"><button onclick="changeQty(-1)">-</button><input id="qty" value="1"><button onclick="changeQty(1)">+</button></div></div><div class="betRow"><span></span><div class="multBtns"><button class="multBtn active" data-m="1" onclick="setMult(1)">X1</button><button class="multBtn" data-m="5" onclick="setMult(5)">X5</button><button class="multBtn" data-m="10" onclick="setMult(10)">X10</button><button class="multBtn" data-m="20" onclick="setMult(20)">X20</button><button class="multBtn" data-m="50" onclick="setMult(50)">X50</button><button class="multBtn" data-m="100" onclick="setMult(100)">X100</button></div></div></div><div class="betFoot"><button class="cancel" onclick="closeBet()">Cancel</button><button class="confirm" id="confirmBtn" onclick="confirmBet()">Total ₹1</button></div></div></div>
-<div id="depModal"><div class="depSheet"><h2>💰 Deposit</h2><input id="depAmt" type="number" placeholder="Min ₹100"><div class="depOptions"><button onclick="setDep(100)">₹100</button><button onclick="setDep(500)">₹500</button><button onclick="setDep(1000)">₹1000</button><button onclick="setDep(5000)">₹5000</button></div><button class="mainBtn" onclick="doDeposit()">Deposit Now</button><button class="closeBtn" onclick="closeDeposit()">Close</button></div></div>
+<div id="depModal"><div class="depSheet"><h2>💰 Deposit - Unlock Bet</h2><p style="color:#ffd700;font-size:12px">Pehla deposit karne ke baad ₹34 bonus se bet laga sakte ho + game khel sakte ho</p><input id="depAmt" type="number" placeholder="Min ₹100"><div class="depOptions"><button onclick="setDep(100)">₹100</button><button onclick="setDep(500)">₹500</button><button onclick="setDep(1000)">₹1000</button><button onclick="setDep(5000)">₹5000</button></div><button class="mainBtn" onclick="doDeposit()">Deposit Now & Unlock Game</button><button class="closeBtn" onclick="closeDeposit()">Close</button></div></div>
 <div id="withModal"><div class="depSheet"><h2>🏦 Withdraw</h2><p style="color:#aaa">Available: ₹<span id="withBal">0</span></p><input id="withAmt" type="number" placeholder="Min ₹200"><div class="depOptions"><button onclick="setWith(200)">₹200</button><button onclick="setWith(1000)">₹1000</button><button onclick="setWith(5000)">₹5000</button></div><button class="mainBtn" style="background:#ff3d3d" onclick="doWithdraw()">Withdraw</button><button class="closeBtn" onclick="closeWithdraw()">Close</button></div></div>
 <div id="resultPop" onclick="this.style.display='none'"><div class="pop" id="popBox"><h1 id="popTitle">WIN</h1><p id="popMsg"></p><br><button style="padding:10px 20px;background:gold;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
 <div id="infoPop" onclick="this.style.display='none'"><div class="pop" style="border-color:#4a90e2"><h1 id="infoTitle">Success</h1><p id="infoMsg"></p><br><button style="padding:10px 20px;background:#4a90e2;color:white;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
@@ -378,10 +351,11 @@ function doRegister(){
   if(users.find(u=>u.mobile==mobile)){ alert('Ye mobile pehle se registered hai! Login karo'); showLogin(); return; }
   let uid=genUid(); while(users.find(u=>u.uid==uid)) uid=genUid();
   let myInvite=document.getElementById('autoInvitePreview').innerText; while(users.find(u=>u.myInvite==myInvite)) myInvite=genInvite();
-  let newUser={mobile,pass,uid,myInvite,inviteBy:inviteInput,bal:5000,created:Date.now()};
+  // NEW: 34 bonus + hasDeposited false
+  let newUser={mobile,pass,uid,myInvite,inviteBy:inviteInput,bal:34,bonus:34,hasDeposited:false,created:Date.now()};
   users.push(newUser);
   localStorage.setItem('rajaUsers', JSON.stringify(users));
-  alert('Register Success! UID: '+uid+' Invite: '+myInvite+' - Ab Login karo');
+  alert('Register Success! Aapko ₹34 bonus mila hai! UID: '+uid+' - Par bet lagane ke liye pehla deposit karna padega');
   showLogin();
   document.getElementById('loginMobile').value=mobile;
 }
@@ -408,15 +382,25 @@ function applyUserToUI(){
   document.getElementById('myInviteCode').innerText=currentUser.myInvite;
   document.getElementById('inviteLinkShow').innerText='https://dmfirst1.com/#/register?r_code='+currentUser.myInvite;
   document.getElementById('lastLoginTime').innerText=new Date().toLocaleString();
+  document.getElementById('accBonus').innerText=currentUser.bonus||34;
+  // update bonus lock status
+  if(currentUser.hasDeposited){
+    document.getElementById('accBonusLock').innerText='UNLOCKED ✅'; document.getElementById('accBonusLock').style.background='#00c853';
+    document.getElementById('totalBonusInfo').innerText='(₹34 bonus unlocked)';
+    document.getElementById('totalBonusInfo').style.color='#00c853';
+  } else {
+    document.getElementById('accBonusLock').innerText='LOCKED 🔒'; document.getElementById('accBonusLock').style.background='#ff3d3d';
+    document.getElementById('totalBonusInfo').innerText='(₹34 bonus locked - deposit needed)';
+  }
   bal=currentUser.bal;
 }
 
-let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
+let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:34,currentSec:30};
 let data=JSON.parse(localStorage.getItem('rajaVFinal')||'null')||defaultData;
 let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
 if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); data.histories[sec].unshift({period:'20261002'+sec+String(data.periods[sec]).padStart(4,'0'),num,bs:num>=5?'Big':'Small',col:num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
 let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
-function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaVFinal', JSON.stringify(data)); if(currentUser){ currentUser.bal=bal; localStorage.setItem('rajaCurrentUser', JSON.stringify(currentUser)); let idx=users.findIndex(u=>u.uid==currentUser.uid); if(idx>=0){ users[idx].bal=bal; localStorage.setItem('rajaUsers', JSON.stringify(users)); } } }
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaVFinal', JSON.stringify(data)); if(currentUser){ currentUser.bal=bal; localStorage.setItem('rajaCurrentUser', JSON.stringify(currentUser)); let idx=users.findIndex(u=>u.uid==currentUser.uid); if(idx>=0){ users[idx].bal=bal; users[idx].hasDeposited=currentUser.hasDeposited; localStorage.setItem('rajaUsers', JSON.stringify(users)); } } }
 function navTo(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active'));
@@ -433,48 +417,33 @@ function openCommission(){ navTo('commission'); }
 function openRules(){ navTo('rules'); }
 function openAgent(){ navTo('agent'); }
 function openRebate(){ navTo('rebate'); }
-function enterGame(sec){ currentSec=sec; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('gameScreen').classList.add('active'); document.getElementById('bottomNav').style.display='none'; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save(); }
+function enterGame(sec){
+  // CHECK DEPOSIT FIRST
+  if(currentUser &&!currentUser.hasDeposited){
+    showInfo('Deposit Required','Aapke pass ₹34 bonus hai 🔒\nPar bet lagane ke liye pehla deposit karna jaruri hai!\nMin ₹100 deposit karo tabhi game unlock hoga');
+    setTimeout(()=>openDeposit(), 800);
+    return;
+  }
+  currentSec=sec; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('gameScreen').classList.add('active'); document.getElementById('bottomNav').style.display='none'; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();
+}
 function goHomeFromGame(){ navTo('home'); render(); }
 function switchMode(sec){ currentSec=sec; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
 function openDeposit(){ document.getElementById('depModal').style.display='flex';}
 function closeDeposit(){ document.getElementById('depModal').style.display='none';}
 function setDep(a){ document.getElementById('depAmt').value=a;}
-function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); if(!a||a<100) return alert('Min ₹100'); bal+=a; save(); render(); closeDeposit(); showInfo('Deposit Success','₹'+a+' add');}
+function doDeposit(){
+  let a=parseInt(document.getElementById('depAmt').value);
+  if(!a||a<100) return alert('Min ₹100 deposit');
+  bal+=a;
+  if(currentUser){
+    currentUser.hasDeposited=true; // UNLOCK GAME
+    currentUser.bal=bal;
+  }
+  save(); render(); closeDeposit();
+  showInfo('Deposit Success + Game Unlocked!','₹'+a+' add hua + Ab aap ₹34 bonus se bhi bet laga sakte ho! 🎉\nGame unlock ho gaya!');
+  applyUserToUI();
+}
 function openWithdraw(){ document.getElementById('withBal').innerText=bal; document.getElementById('withModal').style.display='flex';}
 function closeWithdraw(){ document.getElementById('withModal').style.display='none';}
 function setWith(a){ document.getElementById('withAmt').value=a;}
-function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam!'); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' sent');}
-let numsDiv=document.getElementById('nums'); for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d);}
-function openBet(type,val,title){ if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bandh'); selType=type; selVal=val; document.getElementById('betTitle').innerText=title; document.getElementById('betModal').style.display='flex'; updateTotal();}
-function closeBet(){ document.getElementById('betModal').style.display='none';}
-function setAmt(a){ selAmt=a; document.querySelectorAll('.amtBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.a)==a)); updateTotal();}
-function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.m)==m)); updateTotal();}
-function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal();}
-document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal();});
-function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total ₹'+total.toFixed(2);}
-function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi!'); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
-function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); renderHistory();}
-function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html;}
-function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory();}
-function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; document.getElementById('popTitle').innerText=win?'💰 WIN!':'😢 LOSS'; document.getElementById('popMsg').innerText=msg;}
-function showInfo(title,msg){ document.getElementById('infoPop').style.display='flex'; document.getElementById('infoTitle').innerText=title; document.getElementById('infoMsg').innerText=msg;}
-function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(false,'Loss (No: '+num+')'); } data.bets[sec]=[];}
-setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); if(document.getElementById('t1')){ document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; } render(); if(tl%2==0) save(); },1000);
-
-// INITIAL CHECK - REGISTER/LOGIN AVSE J
-if(currentUser){
-  applyUserToUI();
-  bal=currentUser.bal;
-  data.bal=bal;
-  navTo('home');
-  render();
-} else {
-  if(users.length==0){
-    showRegister();
-  } else {
-    showLogin();
-  }
-}
-</script>
-</body>
-                                                                         </html>
+function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal)
