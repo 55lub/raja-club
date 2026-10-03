@@ -7,40 +7,61 @@
 body{background:#000;display:flex;justify-content:center}
 .mobile{width:400px;max-width:100%;background:#000;min-height:100vh;position:relative;padding-bottom:85px;overflow:hidden}
 .screen{display:none;min-height:100vh;position:absolute;top:0;left:0;width:100%;padding-bottom:100px;overflow-y:auto;background:#000}
-.screen.active{display:block}
+.screen.active{display:block!important}
 #accountScreen{background:#00120c}
 #homeScreen{background:#f0f0f0}
 #gameScreen{background:#011a12}
+#registerScreen,#loginScreen{z-index:9999;background:#000;display:none}
+#registerScreen.active,#loginScreen.active{display:block!important}
 
-/* HOME - WinGo BOX - PHOTO JEVU */
+/* AUTH */
+.authBg{background:linear-gradient(180deg,#0e9b6a 0%, #00120c 60%);min-height:100vh;padding:0;display:flex;flex-direction:column}
+.authHeader{text-align:center;padding:30px 20px 20px 20px}
+.authLogo{font-size:40px;font-weight:900;color:#ffd700;letter-spacing:1px}
+.authSub{color:#d4b072;font-size:13px;margin-top:6px}
+.authBox{background:#0f2f26;margin:20px 16px;border-radius:20px;padding:22px 18px;border:1px solid #1a3d32;box-shadow:0 10px 30px #00000050}
+.authTitle{color:white;font-size:22px;font-weight:900;text-align:center;margin-bottom:4px}
+.authDesc{color:#8aa39b;font-size:12px;text-align:center;margin-bottom:18px}
+.inputGroup{margin-bottom:12px;position:relative}
+.inputLabel{color:#d4b072;font-size:13px;font-weight:600;margin-bottom:6px;display:block}
+.inputField{width:100%;background:#081a14;border:1px solid #1f3d32;border-radius:12px;padding:13px 14px 13px 44px;color:white;font-size:14px;outline:none}
+.inputField:focus{border-color:#d4b072}
+.inputIcon{position:absolute;left:14px;top:34px;font-size:18px;color:#6a8a7f}
+.inviteAutoBox{background:#081a14;border:1px dashed #d4b072;border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.inviteAutoLabel{color:#8aa39b;font-size:11px}
+.inviteAutoCode{color:#ffd700;font-size:16px;font-weight:900;letter-spacing:1px}
+.authBtn{width:100%;background:linear-gradient(90deg,#d4b072,#b8965a);color:white;border:none;padding:14px;border-radius:25px;font-weight:900;font-size:16px;margin-top:10px;cursor:pointer;box-shadow:0 4px 15px #d4b07250}
+.authLink{color:#8aa39b;font-size:13px;text-align:center;margin-top:14px}
+.authLink span{color:#d4b072;font-weight:900;cursor:pointer;text-decoration:underline}
+.errorMsg{color:#ff6b6b;font-size:11px;margin-top:4px;display:none}
+
+/* HOME */
 .homeTop{background:linear-gradient(135deg,#0d4a3a,#00c853);padding:20px 15px;color:white;border-radius:0 0 20px 20px}
 .balRow{display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:#ffffff20;padding:10px 14px;border-radius:12px}
 .wBtns{display:flex;gap:8px}
-.wBtns button{padding:8px 18px;border-radius:20px;border:none;font-weight:900;font-size:12px}
+.wBtns button{padding:8px 18px;border-radius:20px;border:none;font-weight:900;font-size:12px;cursor:pointer}
 .with{background:#ff3d3d;color:white}.dep{background:#ffd700;color:black}
 .homeSection{padding:14px}
 .lotTitle{font-weight:900;color:#222;margin:10px 0 12px 0;font-size:16px}
 .wigoGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.wigoCard{background:white;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 12px #00000015;cursor:pointer;border-left:5px solid #00c853;position:relative;overflow:hidden}
+.wigoCard{background:white;border-radius:16px;padding:16px;text-align:center;box-shadow:0 4px 12px #00000015;cursor:pointer;border-left:5px solid #00c853}
 .wigoCard h3{color:#0d4a3a;font-size:16px;font-weight:900}
-.wigoCard p{font-size:11px;color:#888;margin-top:3px}
-.liveTime{font-size:18px;color:#ff3d3d;font-weight:900;margin-top:8px;background:#ff000012;padding:6px;border-radius:10px;letter-spacing:1px}
-.wigoCard:hover{transform:scale(1.02);transition:0.2s}
+.liveTime{font-size:18px;color:#ff3d3d;font-weight:900;margin-top:8px;background:#ff000012;padding:6px;border-radius:10px}
 
-/* ACCOUNT - PHOTO JEVU */
+/* ACCOUNT */
 .accTopBg{background:linear-gradient(180deg,#0e9b6a 0%, #081a14 100%);padding:22px 16px 16px 16px}
 .accProfileRow{display:flex;align-items:center;gap:14px}
-.accAvatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:2px solid #ffffff30;flex-shrink:0}
+.accAvatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:2px solid #ffffff30}
 .accAvatar img{width:100%;height:100%;object-fit:cover}
-.accName{color:white;font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.accName{color:white;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
 .vip0Badge{background:linear-gradient(#a8a8a8,#5a5a5a);color:white;padding:3px 10px;border-radius:15px;font-size:11px;font-weight:700;border:1px solid #777}
 .uidPill{background:#ff9a1a;color:white;padding:5px 12px;border-radius:15px;font-size:13px;display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-weight:600}
-.lastLogin{color:#d4b072;font-size:13px;margin-top:8px}
+.lastLogin{color:#d4b072;font-size:12px;margin-top:8px}
 .totalBoxPhoto{background:#0f2f26;margin:14px 12px 0 12px;border-radius:16px;padding:16px;border:1px solid #1a3d32}
 .totalLabel{color:#8aa39b;font-size:14px}
 .totalRow{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
-.totalAmount{color:#d4b072;font-size:22px;font-weight:900;display:flex;align-items:center;gap:10px}
-.enterWalletBtn{background:#d4b072;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:700;font-size:14px}
+.totalAmount{color:#d4b072;font-size:22px;font-weight:900}
+.enterWalletBtn{background:#d4b072;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer}
 .dividerLine{height:1px;background:#1f3d32;margin:16px 0}
 .fourIconsRow{display:flex;justify-content:space-between}
 .iconItem{flex:1;text-align:center;cursor:pointer}
@@ -50,11 +71,11 @@ body{background:#000;display:flex;justify-content:center}
 .safeIconBox{width:48px;height:48px;background:#ffcc4d;border-radius:10px;display:flex;justify-content:center;align-items:center;font-size:24px;flex-shrink:0;border:2px solid #ffaa00}
 .safeTitle{color:#d4b072;font-size:16px;font-weight:700}
 .safeDesc{color:#d4b072;font-size:11px;line-height:14px;margin-top:4px;opacity:0.9}
-.safeAmount{background:#ff8a3d;color:white;padding:3px 10px;border-radius:15px;font-size:13px;font-weight:900;display:flex;align-items:center;gap:6px;margin-left:auto;flex-shrink:0}
+.safeAmount{background:#ff8a3d;color:white;padding:3px 10px;border-radius:15px;font-size:13px;font-weight:900;margin-left:auto}
 .grid4Boxes{margin:0 12px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .smallBox{background:#0f2f26;border-radius:12px;padding:14px 12px;display:flex;align-items:center;gap:10px;border:1px solid #1a3d32;cursor:pointer}
-.smallIcon{width:44px;height:36px;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:22px;flex-shrink:0}
-.smallBox h4{color:#d4b072;font-size:14px;font-weight:600;line-height:16px}
+.smallIcon{width:44px;height:36px;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:22px}
+.smallBox h4{color:#d4b072;font-size:14px;font-weight:600}
 .smallBox p{color:#8aa39b;font-size:11px;margin-top:2px}
 .bottomListBox{background:#0f2f26;margin:12px;border-radius:14px;border:1px solid #1a3d32;overflow:hidden}
 .listRowPhoto{padding:16px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1a3d32;cursor:pointer}
@@ -63,32 +84,32 @@ body{background:#000;display:flex;justify-content:center}
 .listIconSmall{width:32px;height:28px;background:#2a4a3e;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:16px}
 .listArrow{color:#5a7a70;font-size:18px}
 
-/* AGENCY + INVITE + OTHERS */
+/* AGENCY */
 .agencyHeader{background:#0a0a0a;color:#d4b072;padding:12px;text-align:center;font-size:17px;font-weight:700;border-bottom:1px solid #1a1a1a;position:relative}
 .agencyHeader.back{position:absolute;left:12px;top:11px;font-size:22px;color:white;cursor:pointer}
 .agencyTop{background:linear-gradient(135deg,#0d4a3a 0%, #1a9c6b 50%, #0d4a3a 100%);padding:25px 15px 35px 15px;text-align:center}
-.agencyTop h1{font-size:36px;color:white;font-weight:900;margin-bottom:5px}
-.commissionPill{background:#1a1a1a;color:#d4b072;display:inline-block;padding:5px 18px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:8px;border:1px solid #333}
+.agencyTop h1{font-size:36px;color:white;font-weight:900}
+.commissionPill{background:#1a1a1a;color:#d4b072;display:inline-block;padding:5px 18px;border-radius:20px;font-size:13px;border:1px solid #333;margin-top:5px}
 .statsBox{background:#132e27;margin:-20px 12px 0 12px;border-radius:14px;padding:15px 10px;display:flex;border:1px solid #1f3d32;position:relative;z-index:2}
 .statsCol{flex:1;text-align:center}
 .statsCol:first-child{border-right:1px solid #223f35}
 .statsTitle{color:#8aa39b;font-size:13px;font-weight:600;margin-bottom:12px}
 .statNum{color:white;font-size:18px;font-weight:900}
 .statLabel{color:#d4b072;font-size:11px;margin-bottom:14px;margin-top:2px}
-.invitationBtn{background:#d4b072;color:white;border:none;width:calc(100% - 24px);margin:18px 12px 12px 12px;padding:13px;border-radius:28px;font-weight:900;font-size:15px}
+.invitationBtn{background:#d4b072;color:white;border:none;width:calc(100% - 24px);margin:18px 12px 12px 12px;padding:13px;border-radius:28px;font-weight:900;font-size:15px;cursor:pointer}
 .menuList{margin:0 12px;display:flex;flex-direction:column;gap:10px}
 .menuItem{background:#132e27;border:1px solid #1f3d32;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;color:#d4b072;cursor:pointer}
 .menuIcon{width:32px;height:32px;background:#2a4a3e;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:16px}
 .promoData{background:#132e27;margin:12px;border-radius:14px;padding:14px;border:1px solid #1f3d32}
 
-/* GAME SCREEN */
+/* GAME */
 .gameTop{display:flex;align-items:center;gap:10px;background:#0d4a3a;color:white;padding:12px}
 .gameTop button{background:#222;color:white;border:none;padding:8px 15px;border-radius:8px;font-size:20px;cursor:pointer}
 .wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white;margin:10px}
 .wallet h1{color:#ffd700;font-size:28px}
 .modes{display:flex;gap:5px;margin:10px}
 .mode{flex:1;background:#1a3d33;border-radius:10px;padding:8px 4px;text-align:center;color:#aaa;font-size:11px;cursor:pointer;font-weight:700}
-.mode.active{background:#00c853;color:white;box-shadow:0 2px 8px #00c85350}
+.mode.active{background:#00c853;color:white}
 .mode span{display:block;font-size:11px;color:#ffd700;margin-top:2px}
 .timeBox{background:#0d4a3a;border-radius:12px;padding:12px;display:flex;justify-content:space-between;color:white;margin:0 10px;align-items:center}
 .timer b{background:#111;padding:4px 5px;border-radius:4px;color:#ffd700;margin:0 1px;font-size:16px}
@@ -96,7 +117,7 @@ body{background:#000;display:flex;justify-content:center}
 .c{flex:1;padding:12px;border-radius:25px;font-weight:900;border:none;cursor:pointer;font-size:13px}
 .green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
 .numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 10px}
-.n{width:52px;height:52px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;color:white;cursor:pointer;font-size:18px;box-shadow:0 2px 6px #00000040}
+.n{width:52px;height:52px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;color:white;cursor:pointer;font-size:18px}
 .n.rednum{background:linear-gradient(#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
 .bigsmall{display:flex;gap:8px;margin:10px}
 .bigsmall button{flex:1;padding:13px;border-radius:25px;border:none;font-weight:900;cursor:pointer;font-size:14px}
@@ -105,18 +126,14 @@ body{background:#000;display:flex;justify-content:center}
 .row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #ffffff10;font-size:12px}
 .pager{display:flex;justify-content:center;gap:20px;padding:10px;background:#0d4a3a;margin:10px;border-radius:10px;color:white;align-items:center}
 .pager button{padding:6px 14px;background:#00c853;color:white;border:none;border-radius:6px;font-weight:900;cursor:pointer}
-
-/* BOTTOM NAV */
 .bottomNav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:400px;max-width:100%;background:#102a22;display:flex;justify-content:space-around;align-items:center;padding:8px 0 10px 0;z-index:1000;border-top:1px solid #1a3d32}
 .navItem{flex:1;text-align:center;color:#6a8a7f;font-size:11px;cursor:pointer}
 .navItem.active{color:#d4b072}
 .navItem.ic{font-size:24px;display:block;margin-bottom:2px}
 .navItem.center{margin-top:-32px;position:relative}
-.navItem.center.circle{width:62px;height:62px;background:linear-gradient(#ffcc33,#ff9900);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;border:4px solid #102a22;margin:0 auto;box-shadow:0 -2px 10px #00000050}
+.navItem.center.circle{width:62px;height:62px;background:linear-gradient(#ffcc33,#ff9900);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:32px;border:4px solid #102a22;margin:0 auto}
 .navItem.center p{background:#1a1a1a;color:#d4b072;font-size:10px;padding:3px 8px;border-radius:10px;margin-top:4px;font-weight:900;border:1px solid #333}
-.chatBot{position:fixed;bottom:90px;right:15px;width:56px;height:56px;background:white;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:30px;z-index:1001;box-shadow:0 4px 15px #00000050;border:3px solid #ddd;left:50%;transform:translateX(140px)}
-
-/* MODALS */
+.chatBot{position:fixed;bottom:90px;width:56px;height:56px;background:white;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:30px;z-index:1001;box-shadow:0 4px 15px #00000050;border:3px solid #ddd;left:50%;transform:translateX(140px)}
 #betModal,#depModal,#withModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:2000}
 .betSheet{width:400px;max-width:100%;background:#0f0f0f;border-radius:20px 20px 0 0;overflow:hidden}
 .betHead{background:#8bb9ff;padding:15px;text-align:center}
@@ -148,14 +165,87 @@ body{background:#000;display:flex;justify-content:center}
 <body>
 <div class="mobile">
 
-<!-- HOME - WinGo Box Add Karyu -->
+<!-- REGISTER - ACTIVE BY DEFAULT - 100% AVSE -->
+<div id="registerScreen" class="screen active">
+  <div class="authBg">
+    <div class="authHeader">
+      <div class="authLogo">👑 RAJA CLUB</div>
+      <div class="authSub">Fair & Trusted Gaming Platform</div>
+    </div>
+    <div class="authBox">
+      <div class="authTitle">Register</div>
+      <div class="authDesc">Create account - ek j var - mobile no + password</div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Mobile Number *</label>
+        <div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="regMobile" type="tel" placeholder="Enter 10 digit mobile" maxlength="10"></div>
+        <div class="errorMsg" id="regMobileErr">10 digit mobile nakho</div>
+      </div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Password *</label>
+        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regPass" type="password" placeholder="Set password"></div>
+      </div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Confirm Password *</label>
+        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="regConfirm" type="password" placeholder="Confirm password"></div>
+        <div class="errorMsg" id="regConfirmErr">Password same nathi</div>
+      </div>
+
+      <div class="inviteAutoBox">
+        <div><div class="inviteAutoLabel">Mera Invite Number (Auto Generate)</div><div style="color:#8aa39b;font-size:10px">Har user ko alag milega</div></div>
+        <div class="inviteAutoCode" id="autoInvitePreview">2516XXXXXX</div>
+      </div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Invitation Code (Optional)</label>
+        <div style="position:relative"><span class="inputIcon">🎟️</span><input class="inputField" id="regInviteInput" type="text" placeholder="Jisne invite kiya uska code"></div>
+      </div>
+
+      <button class="authBtn" onclick="doRegister()">REGISTER NOW</button>
+      <div class="authLink">Already have account? <span onclick="showLogin()">Login Karo</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="screen">
+  <div class="authBg">
+    <div class="authHeader">
+      <div class="authLogo">👑 RAJA CLUB</div>
+      <div class="authSub">Welcome Back! Varamvar Login</div>
+    </div>
+    <div class="authBox">
+      <div class="authTitle">Login</div>
+      <div class="authDesc">Har bar login karna padega</div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Mobile Number</label>
+        <div style="position:relative"><span class="inputIcon">📱</span><input class="inputField" id="loginMobile" type="tel" placeholder="Registered mobile" maxlength="10"></div>
+      </div>
+
+      <div class="inputGroup">
+        <label class="inputLabel">Password</label>
+        <div style="position:relative"><span class="inputIcon">🔒</span><input class="inputField" id="loginPass" type="password" placeholder="Your password"></div>
+        <div class="errorMsg" id="loginErr">Mobile ya password galat hai</div>
+      </div>
+
+      <button class="authBtn" onclick="doLogin()">LOGIN NOW</button>
+      <div class="authLink">No account? <span onclick="showRegister()">Register Karo</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
 <div id="homeScreen" class="screen">
   <div class="homeTop">
     <h1 style="color:#ffd700;text-align:center">👑 RAJA CLUB</h1>
+    <div style="color:white;text-align:center;font-size:11px;margin-top:6px">UID: <span id="homeUid">-</span> | Invite: <span id="homeInvite">-</span></div>
     <div class="balRow"><span>Balance: ₹<span id="homeBal">5000</span></span><div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div></div>
   </div>
   <div class="homeSection">
-    <div class="lotTitle">🎮 Lottery Games</div>
+    <div class="lotTitle">🎮 Lottery Games - Click to Play</div>
     <div class="wigoGrid">
       <div class="wigoCard" onclick="enterGame(30)"><h3>WinGo 30s</h3><p>Fast & Fun</p><div class="liveTime" id="homeLive30">00:30</div></div>
       <div class="wigoCard" onclick="enterGame(60)"><h3>WinGo 1M</h3><p>Most Popular</p><div class="liveTime" id="homeLive60">01:00</div></div>
@@ -165,97 +255,66 @@ body{background:#000;display:flex;justify-content:center}
   </div>
 </div>
 
-<div id="activityScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>🎁 Activity</h2><p>Daily rewards</p></div></div>
-<div id="bonusScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>Get ₹500</h2></div><div style="text-align:center;padding:30px"><div style="width:180px;height:180px;background:linear-gradient(gold,orange);border-radius:50%;margin:0 auto;display:flex;justify-content:center;align-items:center;font-size:70px">🎡</div><button class="mainBtn" style="max-width:260px;margin-top:20px" onclick="spinWheel()">SPIN NOW</button></div></div>
+<div id="activityScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>🎁 Activity</h2></div></div>
+<div id="bonusScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>Get ₹500</h2></div></div>
 
 <!-- PROMOTION -->
 <div id="promotionScreen" class="screen">
   <div class="agencyHeader">Agency</div>
-  <div class="agencyTop"><h1>0</h1><div class="commissionPill">Yesterday's total commission</div><div style="color:#ffffffbb;font-size:12px">Upgrade the level to increase commission income</div></div>
-  <div class="statsBox"><div class="statsCol"><div class="statsTitle">Direct subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div><div class="statsCol"><div class="statsTitle">Team subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div></div>
+  <div class="agencyTop"><h1>0</h1><div class="commissionPill">Yesterday's total commission</div></div>
+  <div class="statsBox"><div class="statsCol"><div class="statsTitle">Direct subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div></div><div class="statsCol"><div class="statsTitle">Team subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div></div></div>
   <button class="invitationBtn" onclick="openInvite()">INVITATION LINK</button>
   <div class="menuList">
     <div class="menuItem" onclick="openPartner()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">👤</div>Partner rewards</div><div>›</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📋</div>Copy invitation code</div><div style="color:#8aa39b;font-size:13px">251671774944 📄</div></div>
+    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📋</div>Copy invitation code</div><div style="color:#8aa39b;font-size:13px"><span id="myInviteCode">251671774944</span> 📄</div></div>
     <div class="menuItem" onclick="openSubordinate()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📊</div>Subordinate data</div><div>›</div></div>
     <div class="menuItem" onclick="openCommission()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💲</div>Commission detail</div><div>›</div></div>
     <div class="menuItem" onclick="openRules()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📜</div>Invitation rules</div><div>›</div></div>
     <div class="menuItem" onclick="openAgent()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">🎧</div>Agent line customer service</div><div>›</div></div>
     <div class="menuItem" onclick="openRebate()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💰</div>Rebate ratio</div><div>›</div></div>
   </div>
-  <div class="promoData"><div style="color:#d4b072;font-size:14px;font-weight:700;margin-bottom:12px">📦 Promotion data</div><div style="display:grid;grid-template-columns:1fr 1fr;text-align:center"><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">This Week</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total commission</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Direct Subordinate</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total number of subordinates</div></div></div></div>
 </div>
 
-<div id="inviteScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invite</div><div style="color:#8aa39b;text-align:center;padding:10px;font-size:12px">Please swipe left - right to choose your favorite poster</div></div>
-<div id="partnerScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Partner rewards</div><div style="padding:20px;color:#8aa39b">Invite bonus table...</div></div>
+<div id="inviteScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invite</div><div style="text-align:center;padding:30px;color:#8aa39b">QR + Link<br><span id="inviteLinkShow" style="color:#d4b072;font-size:12px"></span></div></div>
+<div id="partnerScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Partner rewards</div></div>
 <div id="subordinateScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Subordinate data</div></div>
 <div id="commissionScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Commission Details</div></div>
 <div id="rulesScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invitation rules</div></div>
 <div id="agentScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Agent line customer service</div></div>
 <div id="rebateScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Rebate ratio</div></div>
 
-<!-- ACCOUNT - TARA PHOTO JEVU + PELA JEVU J -->
-<div id="accountScreen" class="screen active">
+<!-- ACCOUNT -->
+<div id="accountScreen" class="screen">
   <div class="accTopBg">
     <div class="accProfileRow">
       <div class="accAvatar"><img src="https://i.pravatar.cc/100?img=32"></div>
       <div>
-        <div class="accName">MEMBERNNGA24S9 <span class="vip0Badge">⭐ VIP0</span></div>
-        <div class="uidPill">UID &nbsp;|&nbsp; 1774944 &nbsp; 📋</div>
-        <div class="lastLogin">Last login: 2026-10-02 20:46:18</div>
+        <div class="accName"><span id="accName">MEMBER</span> <span class="vip0Badge">⭐ VIP0</span></div>
+        <div class="uidPill">UID | <span id="accUid">0000000</span></div>
+        <div class="uidPill" style="background:#1a9c6b">INVITE | <span id="accInvite">2516000000</span></div>
+        <div class="lastLogin">Mobile: <span id="accMobile">-</span></div>
+        <div class="lastLogin">Last login: <span id="lastLoginTime">-</span></div>
+        <div style="color:#ff6b6b;font-size:12px;margin-top:6px;cursor:pointer" onclick="logout()">Logout ›</div>
       </div>
     </div>
   </div>
-
   <div class="totalBoxPhoto">
     <div class="totalLabel">Total balance</div>
-    <div class="totalRow">
-      <div class="totalAmount">₹<span id="accBal">0.00</span> <span class="totalRefresh" onclick="render()" style="cursor:pointer">⟲</span></div>
-      <button class="enterWalletBtn" onclick="openDeposit()">Enter wallet</button>
-    </div>
+    <div class="totalRow"><div class="totalAmount">₹<span id="accBal">0.00</span> <span style="cursor:pointer" onclick="render()">⟲</span></div><button class="enterWalletBtn" onclick="openDeposit()">Enter wallet</button></div>
     <div class="dividerLine"></div>
-    <div class="fourIconsRow">
-      <div class="iconItem" onclick="showInfo('ARWallet','Balance: ₹'+bal)"><div class="iconCircle">💼</div><div class="iconLabel">ARWallet</div></div>
-      <div class="iconItem" onclick="openDeposit()"><div class="iconCircle">💰</div><div class="iconLabel">Deposit</div></div>
-      <div class="iconItem" onclick="openWithdraw()"><div class="iconCircle">💳</div><div class="iconLabel">Withdraw</div></div>
-      <div class="iconItem" onclick="showInfo('VIP','VIP0')"><div class="iconCircle">🔰</div><div class="iconLabel">VIP</div></div>
-    </div>
+    <div class="fourIconsRow"><div class="iconItem"><div class="iconCircle">💼</div><div class="iconLabel">ARWallet</div></div><div class="iconItem" onclick="openDeposit()"><div class="iconCircle">💰</div><div class="iconLabel">Deposit</div></div><div class="iconItem" onclick="openWithdraw()"><div class="iconCircle">💳</div><div class="iconLabel">Withdraw</div></div><div class="iconItem"><div class="iconCircle">🔰</div><div class="iconLabel">VIP</div></div></div>
   </div>
-
-  <div class="safeBoxPhoto">
-    <div class="safeIconBox">🏦</div>
-    <div style="flex:1">
-      <div class="safeTitle">Safe</div>
-      <div class="safeDesc">The daily interest rate is 0.1%, and the income is calculated once every 1 minutes.</div>
-    </div>
-    <div class="safeAmount">₹0.00 <span>›</span></div>
-  </div>
-
-  <div class="grid4Boxes">
-    <div class="smallBox"><div class="smallIcon" style="background:#4a8cff">📘</div><div><h4>Game History</h4><p>My game history</p></div></div>
-    <div class="smallBox"><div class="smallIcon" style="background:#3dd68c">📗</div><div><h4>Transaction</h4><p>My transaction history</p></div></div>
-    <div class="smallBox"><div class="smallIcon" style="background:#8b4a4a">📕</div><div><h4>Deposit</h4><p>My deposit history</p></div></div>
-    <div class="smallBox"><div class="smallIcon" style="background:#6b4a1a">💼</div><div><h4>Withdraw</h4><p>My withdraw history</p></div></div>
-  </div>
-
-  <div class="bottomListBox">
-    <div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🔔</div>Notification</div><div class="listArrow">›</div></div>
-    <div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎁</div>Gifts</div><div class="listArrow">›</div></div>
-    <div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎟️</div>My Top-Up Coupons</div><div class="listArrow">›</div></div>
-  </div>
+  <div class="safeBoxPhoto"><div class="safeIconBox">🏦</div><div style="flex:1"><div class="safeTitle">Safe</div><div class="safeDesc">Daily interest 0.1% income every 1 min.</div></div><div class="safeAmount">₹0.00 ›</div></div>
+  <div class="grid4Boxes"><div class="smallBox"><div class="smallIcon" style="background:#4a8cff">📘</div><div><h4>Game History</h4><p>My game history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#3dd68c">📗</div><div><h4>Transaction</h4><p>My transaction history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#8b4a4a">📕</div><div><h4>Deposit</h4><p>My deposit history</p></div></div><div class="smallBox"><div class="smallIcon" style="background:#6b4a1a">💼</div><div><h4>Withdraw</h4><p>My withdraw history</p></div></div></div>
+  <div class="bottomListBox"><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🔔</div>Notification</div><div class="listArrow">›</div></div><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎁</div>Gifts</div><div class="listArrow">›</div></div><div class="listRowPhoto"><div class="listLeft"><div class="listIconSmall">🎟️</div>My Top-Up Coupons</div><div class="listArrow">›</div></div></div>
 </div>
 
-<!-- GAME - WinGo Game Start -->
+<!-- GAME -->
 <div id="gameScreen" class="screen">
   <div class="gameTop"><button onclick="goHomeFromGame()">←</button><span id="gameTitle">WinGo 30s</span><span style="margin-left:auto;font-size:12px" id="period"></span></div>
   <div class="wallet"><h1>₹<span id="bal">5000</span></h1><p id="myBets" style="font-size:11px;color:#ffd700;margin-top:4px"></p></div>
-  <div class="modes">
-    <div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div>
-    <div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div>
-    <div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div>
-    <div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div>
-  </div>
-  <div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span style="font-size:10px;color:#aaa">Period</span></div><div style="text-align:right">Time left<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
+  <div class="modes"><div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div></div>
+  <div class="timeBox"><div><span id="modeName">WinGo 30sec</span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
   <div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div>
   <div class="numbers" id="nums"></div>
   <div class="bigsmall"><button class="big" onclick="openBet('size','big','Select Big')">Big 2X</button><button class="small" onclick="openBet('size','small','Select Small')">Small 2X</button></div>
@@ -263,12 +322,12 @@ body{background:#000;display:flex;justify-content:center}
   <div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div>
 </div>
 
-<div class="bottomNav" id="bottomNav">
-  <div class="navItem" id="navHome" onclick="navTo('home')"><span class="ic">🏠</span>Home</div>
+<div class="bottomNav" id="bottomNav" style="display:none">
+  <div class="navItem active" id="navHome" onclick="navTo('home')"><span class="ic">🏠</span>Home</div>
   <div class="navItem" id="navActivity" onclick="navTo('activity')"><span class="ic">🎁</span>Activity</div>
   <div class="navItem center" id="navBonus" onclick="navTo('bonus')"><div class="circle">🎡</div><p>Get ₹500</p></div>
   <div class="navItem" id="navPromotion" onclick="navTo('promotion')"><span class="ic">👥</span>Promotion</div>
-  <div class="navItem active" id="navAccount" onclick="navTo('account')"><span class="ic">👤</span>Account</div>
+  <div class="navItem" id="navAccount" onclick="navTo('account')"><span class="ic">👤</span>Account</div>
 </div>
 <div class="chatBot">🤖</div>
 </div>
@@ -280,23 +339,92 @@ body{background:#000;display:flex;justify-content:center}
 <div id="infoPop" onclick="this.style.display='none'"><div class="pop" style="border-color:#4a90e2"><h1 id="infoTitle">Success</h1><p id="infoMsg"></p><br><button style="padding:10px 20px;background:#4a90e2;color:white;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
 
 <script>
+let users = JSON.parse(localStorage.getItem('rajaUsers')||'[]');
+let currentUser = JSON.parse(localStorage.getItem('rajaCurrentUser')||'null');
+function genUid(){ return Math.floor(1000000 + Math.random()*9000000).toString(); }
+function genInvite(){ return '2516' + Math.floor(10000000 + Math.random()*90000000).toString(); }
+function refreshInvitePreview(){ let c=genInvite(); document.getElementById('autoInvitePreview').innerText=c; return c; }
+refreshInvitePreview();
+
+function showRegister(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('registerScreen').classList.add('active');
+  document.getElementById('bottomNav').style.display='none';
+  refreshInvitePreview();
+}
+function showLogin(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('loginScreen').classList.add('active');
+  document.getElementById('bottomNav').style.display='none';
+}
+function logout(){
+  localStorage.removeItem('rajaCurrentUser');
+  currentUser=null;
+  document.getElementById('loginMobile').value='';
+  document.getElementById('loginPass').value='';
+  showLogin();
+}
+
+function doRegister(){
+  let mobile=document.getElementById('regMobile').value.trim();
+  let pass=document.getElementById('regPass').value;
+  let confirm=document.getElementById('regConfirm').value;
+  let inviteInput=document.getElementById('regInviteInput').value.trim();
+  document.getElementById('regMobileErr').style.display='none';
+  document.getElementById('regConfirmErr').style.display='none';
+  if(mobile.length!=10 ||!/^[0-9]+$/.test(mobile)){ document.getElementById('regMobileErr').style.display='block'; return; }
+  if(pass.length<4){ alert('Password min 4 char'); return; }
+  if(pass!==confirm){ document.getElementById('regConfirmErr').style.display='block'; return; }
+  if(users.find(u=>u.mobile==mobile)){ alert('Ye mobile pehle se registered hai! Login karo'); showLogin(); return; }
+  let uid=genUid(); while(users.find(u=>u.uid==uid)) uid=genUid();
+  let myInvite=document.getElementById('autoInvitePreview').innerText; while(users.find(u=>u.myInvite==myInvite)) myInvite=genInvite();
+  let newUser={mobile,pass,uid,myInvite,inviteBy:inviteInput,bal:5000,created:Date.now()};
+  users.push(newUser);
+  localStorage.setItem('rajaUsers', JSON.stringify(users));
+  alert('Register Success! UID: '+uid+' Invite: '+myInvite+' - Ab Login karo');
+  showLogin();
+  document.getElementById('loginMobile').value=mobile;
+}
+
+function doLogin(){
+  let mobile=document.getElementById('loginMobile').value.trim();
+  let pass=document.getElementById('loginPass').value;
+  document.getElementById('loginErr').style.display='none';
+  let u=users.find(x=>x.mobile==mobile && x.pass==pass);
+  if(!u){ document.getElementById('loginErr').style.display='block'; return; }
+  currentUser=u;
+  localStorage.setItem('rajaCurrentUser', JSON.stringify(currentUser));
+  bal=u.bal; data.bal=u.bal; save(); applyUserToUI(); navTo('home'); render();
+}
+
+function applyUserToUI(){
+  if(!currentUser) return;
+  document.getElementById('accUid').innerText=currentUser.uid;
+  document.getElementById('accInvite').innerText=currentUser.myInvite;
+  document.getElementById('accMobile').innerText=currentUser.mobile;
+  document.getElementById('accName').innerText='MEMBER'+currentUser.uid.slice(-4);
+  document.getElementById('homeUid').innerText=currentUser.uid;
+  document.getElementById('homeInvite').innerText=currentUser.myInvite;
+  document.getElementById('myInviteCode').innerText=currentUser.myInvite;
+  document.getElementById('inviteLinkShow').innerText='https://dmfirst1.com/#/register?r_code='+currentUser.myInvite;
+  document.getElementById('lastLoginTime').innerText=new Date().toLocaleString();
+  bal=currentUser.bal;
+}
+
 let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
 let data=JSON.parse(localStorage.getItem('rajaVFinal')||'null')||defaultData;
 let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
 if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); data.histories[sec].unshift({period:'20261002'+sec+String(data.periods[sec]).padStart(4,'0'),num,bs:num>=5?'Big':'Small',col:num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
 let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
-function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaVFinal', JSON.stringify(data)); }
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaVFinal', JSON.stringify(data)); if(currentUser){ currentUser.bal=bal; localStorage.setItem('rajaCurrentUser', JSON.stringify(currentUser)); let idx=users.findIndex(u=>u.uid==currentUser.uid); if(idx>=0){ users[idx].bal=bal; localStorage.setItem('rajaUsers', JSON.stringify(users)); } } }
 function navTo(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active'));
-  document.getElementById(tab+'Screen').classList.add('active');
+  let scr=document.getElementById(tab+'Screen');
+  if(scr) scr.classList.add('active');
   if(['home','activity','bonus','promotion','account'].includes(tab)) document.getElementById('nav'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
-  if(['invite','partner','subordinate','commission','rules','agent','rebate','game'].includes(tab)){
-    document.getElementById('navPromotion').classList.add('active');
-    if(tab!='game') document.getElementById('bottomNav').style.display='none';
-    else document.getElementById('bottomNav').style.display='none';
-  }
-  if(['home','activity','bonus','promotion','account'].includes(tab)) document.getElementById('bottomNav').style.display='flex';
+  if(['invite','partner','subordinate','commission','rules','agent','rebate','game'].includes(tab)) document.getElementById('navPromotion').classList.add('active');
+  document.getElementById('bottomNav').style.display = (['invite','partner','subordinate','commission','rules','agent','rebate','game','register','login'].includes(tab))? 'none' : 'flex';
 }
 function openInvite(){ navTo('invite'); }
 function openPartner(){ navTo('partner'); }
@@ -305,25 +433,17 @@ function openCommission(){ navTo('commission'); }
 function openRules(){ navTo('rules'); }
 function openAgent(){ navTo('agent'); }
 function openRebate(){ navTo('rebate'); }
-function enterGame(sec){
-  currentSec=sec;
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('gameScreen').classList.add('active');
-  document.getElementById('bottomNav').style.display='none';
-  document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec));
-  page=1; render(); save();
-}
+function enterGame(sec){ currentSec=sec; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('gameScreen').classList.add('active'); document.getElementById('bottomNav').style.display='none'; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save(); }
 function goHomeFromGame(){ navTo('home'); render(); }
 function switchMode(sec){ currentSec=sec; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
 function openDeposit(){ document.getElementById('depModal').style.display='flex';}
 function closeDeposit(){ document.getElementById('depModal').style.display='none';}
 function setDep(a){ document.getElementById('depAmt').value=a;}
-function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); if(!a||a<100) return alert('Min ₹100'); bal+=a; save(); render(); closeDeposit(); showInfo('Deposit Success','₹'+a+' add thai gaya');}
+function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); if(!a||a<100) return alert('Min ₹100'); bal+=a; save(); render(); closeDeposit(); showInfo('Deposit Success','₹'+a+' add');}
 function openWithdraw(){ document.getElementById('withBal').innerText=bal; document.getElementById('withModal').style.display='flex';}
 function closeWithdraw(){ document.getElementById('withModal').style.display='none';}
 function setWith(a){ document.getElementById('withAmt').value=a;}
-function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam!'); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' request sent');}
-function spinWheel(){ let win=Math.floor(Math.random()*500)+50; bal+=win; save(); render(); showInfo('You Won!','₹'+win+' malya!');}
+function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam!'); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' sent');}
 let numsDiv=document.getElementById('nums'); for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d);}
 function openBet(type,val,title){ if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bandh'); selType=type; selVal=val; document.getElementById('betTitle').innerText=title; document.getElementById('betModal').style.display='flex'; updateTotal();}
 function closeBet(){ document.getElementById('betModal').style.display='none';}
@@ -332,16 +452,29 @@ function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=
 function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal();}
 document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal();});
 function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total ₹'+total.toFixed(2);}
-function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi! ₹'+bal); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
-function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : ''; renderHistory();}
+function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi!'); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
+function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); renderHistory();}
 function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html;}
 function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory();}
-function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; } document.getElementById('popMsg').innerText=msg;}
+function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; document.getElementById('popTitle').innerText=win?'💰 WIN!':'😢 LOSS'; document.getElementById('popMsg').innerText=msg;}
 function showInfo(title,msg){ document.getElementById('infoPop').style.display='flex'; document.getElementById('infoTitle').innerText=title; document.getElementById('infoMsg').innerText=msg;}
-function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); } data.bets[sec]=[];}
+function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(false,'Loss (No: '+num+')'); } data.bets[sec]=[];}
 setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); if(document.getElementById('t1')){ document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; } render(); if(tl%2==0) save(); },1000);
-render();
-navTo('home');
+
+// INITIAL CHECK - REGISTER/LOGIN AVSE J
+if(currentUser){
+  applyUserToUI();
+  bal=currentUser.bal;
+  data.bal=bal;
+  navTo('home');
+  render();
+} else {
+  if(users.length==0){
+    showRegister();
+  } else {
+    showLogin();
+  }
+}
 </script>
 </body>
-                                                                                          </html>
+                                                                         </html>
