@@ -12,24 +12,9 @@ body{background:#000;display:flex;justify-content:center}
 #homeScreen{background:#f0f0f0}
 #gameScreen{background:#011a12}
 #activityScreen,#bonusScreen{background:#f0f0f0}
-#promotionScreen{background:#000}
-#inviteScreen{background:#000}
+#promotionScreen,#inviteScreen,#partnerScreen,#subordinateScreen,#commissionScreen,#rulesScreen,#agentScreen,#rebateScreen{background:#000}
 
-/* HOME */
-.homeTop{background:linear-gradient(135deg,#0d4a3a,#00c853);padding:20px 15px;color:white;border-radius:0 0 20px 20px}
-.balRow{display:flex;justify-content:space-between;align-items:center;margin-top:10px;background:#ffffff20;padding:10px;border-radius:10px}
-.wBtns{display:flex;gap:10px}
-.wBtns button{padding:8px 20px;border-radius:20px;border:none;font-weight:900;font-size:12px}
-.with{background:#ff3d3d;color:white}.dep{background:#ffd700;color:black}
-.wigoGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.wigoCard{background:white;border-radius:15px;padding:15px;text-align:center;box-shadow:0 2px 8px #00000015;cursor:pointer;border-left:4px solid #00c853}
-.wigoCard.live{font-size:18px;color:#ff3d3d;font-weight:900;margin-top:5px;background:#ff000010;padding:5px;border-radius:8px}
-
-/* ACCOUNT BOX WHITE TEXT */
-.accBg{background:linear-gradient(180deg,#0a8c5a 0%,#081a14 35%);min-height:100vh;padding-bottom:20px}
-.accHeader{display:flex;align-items:center;padding:20px;gap:15px}
-.accAvatar{width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #ffffff50}
-.accAvatar img{width:100%;height:100%;object-fit:cover}
+/* TOTAL BOX WHITE TEXT */
 .totalBoxNew{background:#132e27;margin:0 12px;border-radius:18px;padding:18px 16px;border:1px solid #1f3d32}
 .tbn-top{display:flex;justify-content:space-between;align-items:center}
 .tbn-label{color:#8aa39b;font-size:15px}
@@ -37,17 +22,17 @@ body{background:#000;display:flex;justify-content:center}
 .tbn-enter{background:#d4b072;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:700;font-size:14px}
 .tbn-line{height:1px;background:#223f35;margin:16px 0 18px 0}
 .tbn-four{display:flex;justify-content:space-between;text-align:center}
-.tbn-item{flex:1;cursor:pointer}
+.tbn-item{flex:1}
 .tbn-icon{width:52px;height:36px;margin:0 auto 8px auto;display:flex;justify-content:center;align-items:center;font-size:28px}
-.tbn-text{color:#ffffff;font-size:13px}
+.tbn-text{color:#fff;font-size:13px}
 
-/* AGENCY PAGE */
-.agencyHeader{background:#0a0a0a;color:#d4b072;padding:12px;text-align:center;font-size:17px;font-weight:700;border-bottom:1px solid #1a1a1a}
-.agencyTop{background:linear-gradient(135deg,#0d4a3a 0%, #1a9c6b 50%, #0d4a3a 100%);padding:25px 15px 35px 15px;text-align:center;position:relative;overflow:hidden}
+/* AGENCY */
+.agencyHeader{background:#0a0a0a;color:#d4b072;padding:12px;text-align:center;font-size:17px;font-weight:700;border-bottom:1px solid #1a1a1a;position:relative}
+.agencyHeader.back{position:absolute;left:12px;top:11px;font-size:22px;color:white;cursor:pointer}
+.agencyTop{background:linear-gradient(135deg,#0d4a3a 0%, #1a9c6b 50%, #0d4a3a 100%);padding:25px 15px 35px 15px;text-align:center}
 .agencyTop h1{font-size:36px;color:white;font-weight:900;margin-bottom:5px}
 .commissionPill{background:#1a1a1a;color:#d4b072;display:inline-block;padding:5px 18px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:8px;border:1px solid #333}
-.upgradeText{color:#ffffffbb;font-size:12px}
-.statsBox{background:#132e27;margin:-20px 12px 0 12px;border-radius:14px;padding:15px 10px;display:flex;border:1px solid #1f3d32;z-index:2;position:relative}
+.statsBox{background:#132e27;margin:-20px 12px 0 12px;border-radius:14px;padding:15px 10px;display:flex;border:1px solid #1f3d32;position:relative;z-index:2}
 .statsCol{flex:1;text-align:center}
 .statsCol:first-child{border-right:1px solid #223f35}
 .statsTitle{color:#8aa39b;font-size:13px;font-weight:600;margin-bottom:12px}
@@ -55,50 +40,66 @@ body{background:#000;display:flex;justify-content:center}
 .statLabel{color:#d4b072;font-size:11px;margin-bottom:14px;margin-top:2px}
 .invitationBtn{background:#d4b072;color:white;border:none;width:calc(100% - 24px);margin:18px 12px 12px 12px;padding:13px;border-radius:28px;font-weight:900;font-size:15px}
 .menuList{margin:0 12px;display:flex;flex-direction:column;gap:10px}
-.menuItem{background:#132e27;border:1px solid #1f3d32;border-radius:12px;padding:14px 14px;display:flex;justify-content:space-between;align-items:center;color:#d4b072;cursor:pointer}
+.menuItem{background:#132e27;border:1px solid #1f3d32;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;color:#d4b072;cursor:pointer}
 .menuIcon{width:32px;height:32px;background:#2a4a3e;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:16px}
 .promoData{background:#132e27;margin:12px;border-radius:14px;padding:14px;border:1px solid #1f3d32}
-.promoDataTitle{color:#d4b072;font-size:14px;font-weight:700;margin-bottom:12px}
 
-/* >>> INVITE PAGE - TARA PHOTO JEVU SEM TO SEM <<< */
-.inviteHeader{background:#000;color:white;padding:12px;text-align:center;font-size:17px;font-weight:700;position:relative;border-bottom:1px solid #111}
-.inviteHeader span.back{position:absolute;left:12px;top:12px;font-size:20px;cursor:pointer}
+/* INVITE */
 .inviteSub{color:#8aa39b;font-size:12px;text-align:center;padding:10px 15px}
-.posterScroll{display:flex;gap:12px;overflow-x:auto;padding:0 12px 15px 12px;scroll-snap-type:x mandatory}
-.posterCard{
-  min-width:280px;max-width:280px;
-  background: linear-gradient(180deg,#1e5aa8 0%, #0d2a5a 100%);
-  border-radius:16px;
-  padding:12px;
-  text-align:center;
-  scroll-snap-align:center;
-  border:2px solid #2a6bc0;
-  position:relative;
-}
-.posterTop{display:flex;gap:6px;justify-content:center;margin-bottom:8px}
-.posterBadge{background:#ffd54f;color:#8d0000;padding:4px 12px;border-radius:15px 15px 0 0;font-size:11px;font-weight:900}
-.posterTitle{color:white;font-weight:900;font-size:14px;margin-bottom:8px}
-.posterFeatures{display:flex;justify-content:center;gap:20px;margin:10px 0}
-.pfItem{background:#ffffff20;border-radius:8px;padding:6px 10px;color:white;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.pfIcon{width:28px;height:28px;background:white;border-radius:50%;display:flex;justify-content:center;align-items:center;color:#1e5aa8;font-size:16px}
-.permanentText{color:#ffd54f;font-weight:700;font-size:13px;margin:8px 0 2px 0}
-.permanentBig{color:#ffd54f;font-weight:900;font-size:22px}
+.posterScroll{display:flex;gap:12px;overflow-x:auto;padding:0 12px 15px 12px}
+.posterCard{min-width:280px;max-width:280px;background:linear-gradient(180deg,#1e5aa8 0%, #0d2a5a 100%);border-radius:16px;padding:12px;text-align:center;border:2px solid #2a6bc0}
+.posterBadge{background:#ffd54f;color:#8d0000;padding:4px 12px;border-radius:15px 15px 0 0;font-size:11px;font-weight:900;display:inline-block;margin:2px}
+.posterTitle{color:white;font-weight:900;font-size:14px;margin:8px 0}
+.pfItem{background:#ffffff20;border-radius:8px;padding:6px 10px;color:white;font-size:11px;display:inline-flex;flex-direction:column;align-items:center;gap:4px;margin:4px}
 .qrBox{background:white;width:110px;height:110px;margin:8px auto;border-radius:8px;display:flex;justify-content:center;align-items:center;position:relative}
-.qrBox img{width:90px;height:90px}
-.giftBox{font-size:80px;position:absolute;bottom:-10px;left:50%;transform:translateX(-50%)}
-.coin1,.coin2{position:absolute;font-size:22px}
-.coin1{top:10px;right:15px}
-.coin2{bottom:30px;left:15px}
-.inviteBottom{padding:15px 12px 0 12px}
-.inviteRow{display:flex;gap:8px;color:#8aa39b;font-size:13px;margin-bottom:15px}
-.inviteRow b{color:#ff3d3d}
 .downloadBtn{background:#d4b072;color:#fff;border:none;width:100%;padding:13px;border-radius:25px;font-weight:900;font-size:14px;margin-bottom:10px}
 .copyLinkBtn{background:transparent;color:#8aa39b;border:1px solid #333;width:100%;padding:12px;border-radius:25px;font-size:13px}
-.shareTitle{color:#8aa39b;font-size:12px;text-align:center;margin:18px 0 12px 0}
-.shareIcons{display:flex;justify-content:center;gap:20px}
-.sIcon{width:44px;height:44px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:24px;cursor:pointer}
-.sIcon.whatsapp{background:#25d366}.sIcon.telegram{background:#0088cc}.sIcon.facebook{background:#1877f2}.sIcon.x{background:white;color:black}
-.sIcon p{font-size:10px;color:#8aa39b;margin-top:32px;position:absolute}
+.shareIcons{display:flex;justify-content:center;gap:20px;margin-top:12px}
+
+/* >>> PARTNER REWARDS - PHOTO 1 JEVU <<< */
+.partnerTopBanner{
+  background: linear-gradient(90deg,#3a2a12,#8c6a2a);
+  padding:10px 15px;
+  display:flex;justify-content:space-between;align-items:center;
+  color:white;
+}
+.partnerTopBanner b{color:#ffd54f}
+.rewardBoxes{padding:12px;display:flex;flex-direction:column;gap:10px}
+.rBox{background:#132e27;border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;color:#8aa39b;font-size:13px;border:1px solid #1f3d32}
+.rBox span:last-child{color:#d4b072;font-weight:900}
+.rBox.total span:last-child{color:#ff6b6b}
+.invRecord{color:#d4b072;font-size:12px;text-align:center;padding:8px}
+.invLinkSection{padding:0 12px}
+.invLinkTitle{color:#d4b072;font-size:14px;font-weight:700;margin:12px 0 6px 0;border-left:3px solid #d4b072;padding-left:8px}
+.linkCopyBox{background:#132e27;border-radius:25px;display:flex;align-items:center;padding:4px 4px 4px 14px;border:1px solid #1f3d32;margin-bottom:14px}
+.linkCopyBox input{flex:1;background:transparent;border:none;color:#5a8a7a;font-size:12px;outline:none}
+.linkCopyBox button{background:#d4b072;color:white;border:none;width:40px;height:32px;border-radius:20px;font-size:16px}
+.rulesTitle{color:#d4b072;font-size:14px;font-weight:700;margin:10px 0;display:flex;gap:8px;align-items:center}
+.rulesText{color:#8aa39b;font-size:12px;padding:0 12px;line-height:16px}
+.ruleTable{margin:10px 12px;border-radius:10px;overflow:hidden;border:1px solid #1f3d32}
+.ruleRow{display:flex;background:#132e27;border-bottom:1px solid #1f3d32}
+.ruleRow.header{background:#1a9c6b;color:white;font-weight:700}
+.ruleCell{flex:1;padding:8px 6px;font-size:11px;text-align:center;color:#8aa39b}
+.ruleCell.green{color:#1a9c6b}
+.ruleRow.header.ruleCell{color:white}
+.noteRed{color:#ff6b6b;font-size:11px;padding:8px 12px;font-weight:700}
+.exampleText{color:#8aa39b;font-size:11px;padding:0 12px;line-height:15px;margin-top:8px}
+.exampleText b{color:#ff8a65}
+
+/* >>> SUBORDINATE DATA - PHOTO 2 JEVU <<< */
+.searchBar{padding:10px 12px;display:flex;gap:8px}
+.searchInput{flex:1;background:#132e27;border:1px solid #1f3d32;border-radius:20px;padding:10px 14px;color:white;font-size:13px;outline:none}
+.searchBtn{background:#d4b072;border:none;width:50px;border-radius:20px;color:white;font-size:18px}
+.filterRow{display:flex;gap:8px;padding:0 12px 12px 12px}
+.filterSelect{flex:1;background:#132e27;border:1px solid #1f3d32;border-radius:8px;padding:8px;color:#8aa39b;font-size:13px}
+.subStatsBox{background:linear-gradient(135deg,#1a9c6b,#0d4a3a);margin:0 12px;border-radius:14px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:center}
+.subStat.num{color:#ffd54f;font-size:20px;font-weight:900}
+.subStat.label{color:#ffffffbb;font-size:11px;margin-top:2px}
+.noData{text-align:center;padding:40px 20px;color:#8aa39b}
+.noDataIcon{font-size:80px;opacity:0.5;margin-bottom:10px}
+
+/* >>> COMMISSION - PHOTO 3 JEVU <<< */
+.dateFilter{background:#132e27;margin:12px;border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center;color:#d4b072;font-size:13px;border:1px solid #1f3d32}
 
 /* BOTTOM NAV */
 .bottomNav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:400px;max-width:100%;background:#1a3d26;display:flex;justify-content:space-around;align-items:center;padding:6px 0 10px 0;z-index:1000;border-top:1px solid #ffffff10}
@@ -108,6 +109,28 @@ body{background:#000;display:flex;justify-content:center}
 .navItem.center{margin-top:-25px}
 .navItem.center.circle{width:60px;height:60px;background:linear-gradient(#ffd700,#ff9800);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:30px;border:4px solid #1a3d26;margin:0 auto}
 .navItem.center p{background:#333;color:#ffd700;font-size:9px;padding:2px 6px;border-radius:10px;margin-top:4px;font-weight:900}
+
+/* GAME */
+.gameTop{display:flex;align-items:center;gap:10px;background:#0d4a3a;color:white;padding:12px}
+.wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white;margin:10px}
+.modes{display:flex;gap:5px;margin:10px}
+.mode{flex:1;background:#1a3d33;border-radius:10px;padding:6px;text-align:center;color:#aaa;font-size:11px;cursor:pointer}
+.mode.active{background:#00c853;color:white}
+.timeBox{background:#0d4a3a;border-radius:12px;padding:10px;display:flex;justify-content:space-between;color:white;margin:0 10px}
+.timer b{background:#222;padding:4px;border-radius:4px;color:#ffd700}
+.colors{display:flex;gap:8px;margin:8px 10px}
+.c{flex:1;padding:10px;border-radius:20px;font-weight:900;border:none;cursor:pointer}
+.green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
+.numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 10px}
+.n{width:48px;height:48px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;color:white;cursor:pointer}
+.n.rednum{background:linear-gradient(#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
+.bigsmall{display:flex;gap:8px;margin:0 10px}
+.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900;cursor:pointer}
+.big{background:#ffb74d}.small{background:#64b5f6}
+.history{background:#0d4a3a;border-radius:12px;padding:10px;color:white;margin:10px}
+.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ffffff10;font-size:12px}
+.pager{display:flex;justify-content:center;gap:20px;padding:10px;background:#0d4a3a;margin:10px;border-radius:10px;color:white}
+.pager button{padding:6px 12px;background:#00c853;color:white;border:none;border-radius:6px;font-weight:900}
 
 /* MODALS */
 #betModal,#depModal,#withModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:2000}
@@ -141,91 +164,98 @@ body{background:#000;display:flex;justify-content:center}
 <body>
 <div class="mobile">
 
-<div id="homeScreen" class="screen"><div class="homeTop"><h1 style="color:#ffd700;text-align:center">👑 RAJA CLUB</h1><div class="balRow"><span>Balance: ₹<span id="homeBal">5000</span></span><div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div></div></div><div style="padding:15px"><div style="font-weight:900;color:#333;margin:10px 0">🎮 Lottery</div><div class="wigoGrid"><div class="wigoCard" onclick="enterGame(30)"><h3>WinGo 30s</h3><div class="live" id="homeLive30">00:30</div></div><div class="wigoCard" onclick="enterGame(60)"><h3>WinGo 1M</h3><div class="live" id="homeLive60">01:00</div></div><div class="wigoCard" onclick="enterGame(180)"><h3>WinGo 3M</h3><div class="live" id="homeLive180">03:00</div></div><div class="wigoCard" onclick="enterGame(300)"><h3>WinGo 5M</h3><div class="live" id="homeLive300">05:00</div></div></div></div></div>
+<div id="homeScreen" class="screen"><div style="background:linear-gradient(135deg,#0d4a3a,#00c853);padding:20px 15px;color:white;border-radius:0 0 20px 20px"><h1 style="color:#ffd700;text-align:center">👑 RAJA CLUB</h1><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;background:#ffffff20;padding:10px;border-radius:10px"><span>Balance: ₹<span id="homeBal">5000</span></span><div style="display:flex;gap:10px"><button style="padding:8px 20px;border-radius:20px;border:none;font-weight:900;background:#ff3d3d;color:white" onclick="openWithdraw()">Withdraw</button><button style="padding:8px 20px;border-radius:20px;border:none;font-weight:900;background:#ffd700" onclick="openDeposit()">Deposit</button></div></div></div><div style="padding:15px"><div class="wigoGrid"><div class="wigoCard" onclick="enterGame(30)"><h3>WinGo 30s</h3><div class="live" id="homeLive30">00:30</div></div><div class="wigoCard" onclick="enterGame(60)"><h3>WinGo 1M</h3><div class="live" id="homeLive60">01:00</div></div><div class="wigoCard" onclick="enterGame(180)"><h3>WinGo 3M</h3><div class="live" id="homeLive180">03:00</div></div><div class="wigoCard" onclick="enterGame(300)"><h3>WinGo 5M</h3><div class="live" id="homeLive300">05:00</div></div></div></div></div>
 <div id="activityScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>🎁 Activity</h2></div></div>
 <div id="bonusScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>Get ₹500</h2></div></div>
 
-<!-- PROMOTION AGENCY -->
+<!-- PROMOTION -->
 <div id="promotionScreen" class="screen">
-  <div class="agencyHeader">Agency <span style="float:right">📋</span></div>
-  <div class="agencyTop"><h1>0</h1><div class="commissionPill">Yesterday's total commission</div><div class="upgradeText">Upgrade the level to increase commission income</div></div>
-  <div class="statsBox">
-    <div class="statsCol"><div class="statsTitle">Direct subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div>
-    <div class="statsCol"><div class="statsTitle">Team subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div>
-  </div>
+  <div class="agencyHeader">Agency</div>
+  <div class="agencyTop"><h1>0</h1><div class="commissionPill">Yesterday's total commission</div><div style="color:#ffffffbb;font-size:12px">Upgrade the level to increase commission income</div></div>
+  <div class="statsBox"><div class="statsCol"><div class="statsTitle">Direct subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div><div class="statsCol"><div class="statsTitle">Team subordinates</div><div class="statNum">0</div><div class="statLabel">Number of register</div><div class="statNum">0</div><div class="statLabel">Deposit number</div><div class="statNum">0</div><div class="statLabel">Deposit amount</div><div class="statNum">0</div><div class="statLabel">Number of people making first deposit</div></div></div>
   <button class="invitationBtn" onclick="openInvite()">INVITATION LINK</button>
   <div class="menuList">
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">👤</div>Partner rewards</div><div>›</div></div>
+    <div class="menuItem" onclick="openPartner()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">👤</div>Partner rewards</div><div>›</div></div>
     <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📋</div>Copy invitation code</div><div style="color:#8aa39b;font-size:13px">251671774944 📄</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📊</div>Subordinate data</div><div>›</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💲</div>Commission detail</div><div>›</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📜</div>Invitation rules</div><div>›</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">🎧</div>Agent line customer service</div><div>›</div></div>
-    <div class="menuItem"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💰</div>Rebate ratio</div><div>›</div></div>
+    <div class="menuItem" onclick="openSubordinate()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📊</div>Subordinate data</div><div>›</div></div>
+    <div class="menuItem" onclick="openCommission()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💲</div>Commission detail</div><div>›</div></div>
+    <div class="menuItem" onclick="openRules()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">📜</div>Invitation rules</div><div>›</div></div>
+    <div class="menuItem" onclick="openAgent()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">🎧</div>Agent line customer service</div><div>›</div></div>
+    <div class="menuItem" onclick="openRebate()"><div style="display:flex;align-items:center;gap:12px"><div class="menuIcon">💰</div>Rebate ratio</div><div>›</div></div>
   </div>
-  <div class="promoData"><div class="promoDataTitle">📦 Promotion data</div><div style="display:grid;grid-template-columns:1fr 1fr;text-align:center"><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">This Week</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total commission</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Direct Subordinate</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total number of subordinates</div></div></div></div>
+  <div class="promoData"><div style="color:#d4b072;font-size:14px;font-weight:700;margin-bottom:12px">📦 Promotion data</div><div style="display:grid;grid-template-columns:1fr 1fr;text-align:center"><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">This Week</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total commission</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Direct Subordinate</div></div><div style="padding:8px"><div style="color:white;font-weight:900;font-size:18px">0</div><div style="color:#8aa39b;font-size:11px">Total number of subordinates</div></div></div></div>
 </div>
 
-<!-- INVITE PAGE - NEW - PHOTO JEVU -->
+<!-- INVITE -->
 <div id="inviteScreen" class="screen">
-  <div class="inviteHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invite</div>
+  <div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invite</div>
   <div class="inviteSub">Please swipe left - right to choose your favorite poster</div>
+  <div class="posterScroll"><div class="posterCard"><div><span class="posterBadge">Fair and justice</span><span class="posterBadge">Open and transparent</span></div><div class="posterTitle">Full Odds Bonus Rate</div><div style="margin:8px 0"><span class="pfItem">🏦 Financial security</span><span class="pfItem">⚡ Quick withdrawal</span></div><div style="color:#ffd54f;font-weight:700;font-size:13px">Permanent commission up to</div><div style="color:#ffd54f;font-weight:900;font-size:22px">85%</div><div class="qrBox">QR 🎁</div></div></div>
+  <div style="padding:15px 12px 0 12px"><div style="display:flex;gap:8px;color:#8aa39b;font-size:13px;margin-bottom:15px"><span>Invite friends</span> | <span>Income <b style="color:#ff3d3d">10 billion</b> Commission</span></div><button class="downloadBtn" onclick="showInfo('Download','QR Downloaded')">DOWNLOAD QR CODE</button><button class="copyLinkBtn" onclick="showInfo('Copied','Link copied')">Copy invitation link</button><div style="color:#8aa39b;font-size:12px;text-align:center;margin:18px 0 12px 0">Share to other apps to invite friend</div><div class="shareIcons"><div style="text-align:center"><div style="width:44px;height:44px;border-radius:50%;background:#25d366;display:flex;justify-content:center;align-items:center">💬</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">WhatsApp</div></div><div style="text-align:center"><div style="width:44px;height:44px;border-radius:50%;background:#0088cc;display:flex;justify-content:center;align-items:center">✈️</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">Telegram</div></div><div style="text-align:center"><div style="width:44px;height:44px;border-radius:50%;background:#1877f2;display:flex;justify-content:center;align-items:center;color:white">f</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">Facebook</div></div><div style="text-align:center"><div style="width:44px;height:44px;border-radius:50%;background:white;display:flex;justify-content:center;align-items:center;color:black">X</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">X</div></div></div></div>
+</div>
 
-  <div class="posterScroll">
-    <div class="posterCard">
-      <div class="posterTop"><div class="posterBadge">Fair and justice</div><div class="posterBadge" style="background:#ff8a65">Open and transparent</div></div>
-      <div class="posterTitle">Full Odds Bonus Rate</div>
-      <div class="posterFeatures">
-        <div class="pfItem"><div class="pfIcon">🏦</div>Financial security</div>
-        <div class="pfItem"><div class="pfIcon">⚡</div>Quick withdrawal</div>
-      </div>
-      <div class="permanentText">Permanent commission up to</div>
-      <div class="permanentBig">85%</div>
-      <div style="position:relative;margin-top:10px">
-        <div class="qrBox">
-          <div style="font-size:60px">⬛</div>
-          <div style="position:absolute;font-size:50px">🎁</div>
-        </div>
-        <div class="coin1">🪙</div><div class="coin2">🪙</div>
-      </div>
-    </div>
-
-    <div class="posterCard" style="background:linear-gradient(180deg,#8e24aa,#4a148c)">
-      <div class="posterTop"><div class="posterBadge">Fair and justice</div><div class="posterBadge">Best Bonus</div></div>
-      <div class="posterTitle">Invite & Earn 85%</div>
-      <div class="posterFeatures">
-        <div class="pfItem"><div class="pfIcon">💎</div>Financial security</div>
-        <div class="pfItem"><div class="pfIcon">💰</div>Quick withdrawal</div>
-      </div>
-      <div class="permanentText">Permanent commission up to</div>
-      <div class="permanentBig">85%</div>
-      <div style="position:relative;margin-top:10px">
-        <div class="qrBox"><div style="font-size:60px">⬛</div><div style="position:absolute;font-size:50px">🎁</div></div>
-      </div>
-    </div>
+<!-- >>> PARTNER REWARDS - PHOTO 1 <<< -->
+<div id="partnerScreen" class="screen">
+  <div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Partner rewards</div>
+  <div class="partnerTopBanner"><div>💎 Invite friends to get max rewards</div><div style="background:#ffd54f;color:#5a3a00;padding:5px 12px;border-radius:15px;font-weight:900;font-size:12px">₹188.00</div></div>
+  <div class="rewardBoxes">
+    <div class="rBox"><span>Invitation count</span><span>0</span></div>
+    <div class="rBox"><span>Effective Invitation count</span><span style="color:#1a9c6b">0</span></div>
+    <div class="rBox total"><span>Invitation total bonus</span><span>₹0.00</span></div>
   </div>
-
-  <div class="inviteBottom">
-    <div class="inviteRow"><span>Invite friends</span> <span style="color:#555">|</span> <span>Income <b>10 billion</b> Commission</span></div>
-    <button class="downloadBtn" onclick="showInfo('Download','QR Code Downloaded!')">DOWNLOAD QR CODE</button>
-    <button class="copyLinkBtn" onclick="showInfo('Copied','Invitation link copied!')">Copy invitation link</button>
-    <div class="shareTitle">Share to other apps to invite friend</div>
-    <div class="shareIcons">
-      <div style="text-align:center;position:relative"><div class="sIcon whatsapp" onclick="showInfo('WhatsApp','Sharing...')">💬</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">WhatsApp</div></div>
-      <div style="text-align:center;position:relative"><div class="sIcon telegram" onclick="showInfo('Telegram','Sharing...')">✈️</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">Telegram</div></div>
-      <div style="text-align:center;position:relative"><div class="sIcon facebook" onclick="showInfo('Facebook','Sharing...')">f</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">Facebook</div></div>
-      <div style="text-align:center;position:relative"><div class="sIcon x" onclick="showInfo('X','Sharing...')">X</div><div style="color:#8aa39b;font-size:10px;margin-top:5px">X</div></div>
+  <div class="invRecord" onclick="showInfo('Record','No record')">Invitation record ›</div>
+  <div class="invLinkSection">
+    <div class="invLinkTitle">INVITATION LINK</div>
+    <div class="linkCopyBox"><input value="https://dmfirst1.com/#/register?r..." readonly><button onclick="showInfo('Copied','Link copied')">⎙</button></div>
+    <div class="rulesTitle">📄 Invitation rules</div>
+    <div class="rulesText">If you invites player A, with in 7 Day</div>
+    <div class="ruleTable">
+      <div class="ruleRow header"><div class="ruleCell"></div><div class="ruleCell">When Player A</div><div class="ruleCell">You get bonus</div></div>
+      <div class="ruleRow"><div class="ruleCell">1st deposit</div><div class="ruleCell">₹200 ≤ Amount<₹500<br>and Turnover ≥ ₹1,000</div><div class="ruleCell" style="color:#ff6b6b;font-weight:900">₹18</div></div>
+      <div class="ruleRow"><div class="ruleCell"></div><div class="ruleCell">₹500 ≤ Amount<₹1,000<br>and Turnover ≥ ₹2,500</div><div class="ruleCell" style="color:#ff6b6b;font-weight:900">₹28</div></div>
+      <div class="ruleRow"><div class="ruleCell"></div><div class="ruleCell">₹1,000 ≤ Amount<₹5,000<br>and Turnover ≥ ₹5,000</div><div class="ruleCell" style="color:#ff6b6b;font-weight:900">₹58</div></div>
+      <div class="ruleRow"><div class="ruleCell"></div><div class="ruleCell">Amount ≥ ₹5,000<br>and Turnover ≥ ₹25,000</div><div class="ruleCell" style="color:#ff6b6b;font-weight:900">₹188</div></div>
     </div>
+    <div class="noteRed">Each deposit is eligible for only one bonus.</div>
+    <div class="exampleText">🔸 eg:<br>Player A 1st deposit <b>₹199.00</b> and turnover <b>₹1,000.00</b>, you can't get bonus<br><br>🔸 the reward has no limitation, the more you invited the more rewards you will get it<br><br>🔸 If the conditions are met the rewards will be automatically credited to player's balance</div>
   </div>
 </div>
+
+<!-- >>> SUBORDINATE DATA - PHOTO 2 <<< -->
+<div id="subordinateScreen" class="screen">
+  <div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Subordinate data</div>
+  <div class="searchBar"><input class="searchInput" placeholder="Search subordinate UID"><button class="searchBtn">🔍</button></div>
+  <div class="filterRow"><select class="filterSelect"><option>All</option></select><select class="filterSelect"><option>2026-10-02</option></select></div>
+  <div class="subStatsBox">
+    <div class="subStat"><div class="num">0</div><div class="label">Deposit number</div></div>
+    <div class="subStat"><div class="num">0</div><div class="label">Deposit amount</div></div>
+    <div class="subStat"><div class="num">0</div><div class="label">Number of bettors</div></div>
+    <div class="subStat"><div class="num">0</div><div class="label">Total bet</div></div>
+    <div class="subStat"><div class="num">0</div><div class="label">Number of people making first deposit</div></div>
+    <div class="subStat"><div class="num">0</div><div class="label">First deposit amount</div></div>
+  </div>
+  <div class="noData"><div class="noDataIcon">🗄️</div><div>No data</div></div>
+</div>
+
+<!-- >>> COMMISSION DETAILS - PHOTO 3 <<< -->
+<div id="commissionScreen" class="screen">
+  <div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Commission Details</div>
+  <div style="padding:12px"><div class="dateFilter"><span>2026-10-02</span><span>▼</span></div></div>
+  <div class="noData"><div class="noDataIcon">📊</div><div>No commission data</div><div style="font-size:11px;margin-top:8px">Select date to view</div></div>
+</div>
+
+<!-- EXTRA PAGES -->
+<div id="rulesScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Invitation rules</div><div style="padding:15px;color:#8aa39b;font-size:13px;line-height:18px"><p style="color:#d4b072;font-weight:900;margin-bottom:10px">How to invite?</p>Share your link, friend registers and deposits, you get bonus up to ₹188 per friend.<br><br>Rules same as Partner rewards table.</div></div>
+<div id="agentScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Agent line customer service</div><div style="text-align:center;padding:40px;color:#8aa39b"><div style="font-size:60px">🎧</div><div style="color:#d4b072;margin-top:10px">24/7 Support</div><button class="mainBtn" style="margin-top:20px;max-width:200px" onclick="showInfo('Support','Agent chat opened')">Chat Now</button></div></div>
+<div id="rebateScreen" class="screen"><div class="agencyHeader"><span class="back" onclick="navTo('promotion')">‹</span> Rebate ratio</div><div style="padding:12px"><div class="ruleTable"><div class="ruleRow header"><div class="ruleCell">Level</div><div class="ruleCell">Team</div><div class="ruleCell">Rebate</div></div><div class="ruleRow"><div class="ruleCell">L1</div><div class="ruleCell">Direct</div><div class="ruleCell" style="color:#ffd54f">40%</div></div><div class="ruleRow"><div class="ruleCell">L2</div><div class="ruleCell">Team</div><div class="ruleCell" style="color:#ffd54f">10%</div></div></div></div></div>
 
 <div id="accountScreen" class="screen active">
-<div class="accBg"><div class="accHeader"><div class="accAvatar"><img src="https://i.pravatar.cc/100?img=5"></div><div><h2 style="color:white;font-size:16px">MEMBERNNGA24S9 <span style="background:linear-gradient(#c0c0c0,#8a8a8a);padding:2px 8px;border-radius:10px;font-size:10px;color:white">⭐ VIP0</span></h2><div style="background:#ff9800;color:white;padding:3px 10px;border-radius:15px;font-size:12px;display:inline-flex;margin-top:5px">UID | 1774944 📋</div><div style="color:#ffffffaa;font-size:11px;margin-top:6px">Last login: 2026-10-02 20:46:18</div></div></div>
+<div class="accBg"><div style="display:flex;align-items:center;padding:20px;gap:15px"><div style="width:70px;height:70px;border-radius:50%;overflow:hidden;border:2px solid #ffffff50"><img src="https://i.pravatar.cc/100?img=5" style="width:100%;height:100%"></div><div><h2 style="color:white;font-size:16px">MEMBERNNGA24S9 <span style="background:linear-gradient(#c0c0c0,#8a8a8a);padding:2px 8px;border-radius:10px;font-size:10px;color:white">⭐ VIP0</span></h2><div style="background:#ff9800;color:white;padding:3px 10px;border-radius:15px;font-size:12px;display:inline-flex;margin-top:5px">UID | 1774944 📋</div><div style="color:#ffffffaa;font-size:11px;margin-top:6px">Last login: 2026-10-02 20:46:18</div></div></div>
 <div class="totalBoxNew"><div class="tbn-top"><div><div class="tbn-label">Total balance</div><div style="display:flex;align-items:center;gap:12px;margin-top:6px"><div class="tbn-amt">₹<span id="accBal">0.00</span></div><div style="color:#8aa39b" onclick="render()">⟲</div></div></div><button class="tbn-enter" onclick="openDeposit()">Enter wallet</button></div><div class="tbn-line"></div><div class="tbn-four"><div class="tbn-item"><div class="tbn-icon">👛</div><div class="tbn-text">ARWallet</div></div><div class="tbn-item" onclick="openDeposit()"><div class="tbn-icon">💰</div><div class="tbn-text">Deposit</div></div><div class="tbn-item" onclick="openWithdraw()"><div class="tbn-icon">💳</div><div class="tbn-text">Withdraw</div></div><div class="tbn-item"><div class="tbn-icon" style="color:#0f9b5b">🔰</div><div class="tbn-text">VIP</div></div></div></div>
 </div>
 </div>
 
-<div id="gameScreen" class="screen"><div class="gameTop"><button onclick="goHomeFromGame()">←</button><span id="gameTitle">WinGo</span></div><div class="wallet"><h1>₹<span id="bal">5000</span></h1><p id="myBets" style="font-size:11px;color:#ffd700"></p></div><div class="modes"><div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div></div><div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:10px"></span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div><div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div><div class="numbers" id="nums"></div><div class="bigsmall"><button class="big" onclick="openBet('size','big','Select Big')">Big 2X</button><button class="small" onclick="openBet('size','small','Select Small')">Small 2X</button></div><div class="history" id="hist"></div><div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div></div>
+<div id="gameScreen" class="screen"><div class="gameTop"><button onclick="navTo('promotion')">←</button><span id="gameTitle">WinGo</span></div><div class="wallet"><h1>₹<span id="bal">5000</span></h1></div><div class="modes"><div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div></div><div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:10px"></span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div><div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div><div class="numbers" id="nums"></div><div class="bigsmall"><button class="big" onclick="openBet('size','big','Select Big')">Big 2X</button><button class="small" onclick="openBet('size','small','Select Small')">Small 2X</button></div><div class="history" id="hist"></div><div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div></div>
 
 <div class="bottomNav" id="bottomNav">
 <div class="navItem" id="navHome" onclick="navTo('home')"><span class="ic">🏠</span>Home</div>
@@ -244,25 +274,28 @@ body{background:#000;display:flex;justify-content:center}
 
 <script>
 let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
-let data=JSON.parse(localStorage.getItem('rajaV15')||'null')||defaultData;
+let data=JSON.parse(localStorage.getItem('rajaV16')||'null')||defaultData;
 let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
-if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
+if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; data.histories[sec].unshift({period:'20261002'+sec+String(data.periods[sec]).padStart(4,'0'),num:Math.floor(Math.random()*10),bs:'',col:''}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
 let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
-function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaV15', JSON.stringify(data)); }
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaV16', JSON.stringify(data)); }
 function navTo(tab){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active'));
-  if(tab=='home'){document.getElementById('homeScreen').classList.add('active');document.getElementById('navHome').classList.add('active');}
-  if(tab=='activity'){document.getElementById('activityScreen').classList.add('active');document.getElementById('navActivity').classList.add('active');}
-  if(tab=='bonus'){document.getElementById('bonusScreen').classList.add('active');document.getElementById('navBonus').classList.add('active');}
-  if(tab=='promotion'){document.getElementById('promotionScreen').classList.add('active');document.getElementById('navPromotion').classList.add('active');}
-  if(tab=='account'){document.getElementById('accountScreen').classList.add('active');document.getElementById('navAccount').classList.add('active');}
-  if(tab=='invite'){document.getElementById('inviteScreen').classList.add('active');document.getElementById('navPromotion').classList.add('active');}
-  document.getElementById('bottomNav').style.display = (tab=='invite')? 'none' : 'flex';
+  document.getElementById(tab+'Screen').classList.add('active');
+  if(['home','activity','bonus','promotion','account'].includes(tab)) document.getElementById('nav'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
+  if(['invite','partner','subordinate','commission','rules','agent','rebate'].includes(tab)) document.getElementById('navPromotion').classList.add('active');
+  document.getElementById('bottomNav').style.display = (['invite','partner','subordinate','commission','rules','agent','rebate','game'].includes(tab))? 'none' : 'flex';
 }
 function openInvite(){ navTo('invite'); }
-function enterGame(sec){ currentSec=sec; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('gameScreen').classList.add('active'); document.getElementById('bottomNav').style.display='none'; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
-function goHomeFromGame(){ navTo('account'); render();}
+function openPartner(){ navTo('partner'); }
+function openSubordinate(){ navTo('subordinate'); }
+function openCommission(){ navTo('commission'); }
+function openRules(){ navTo('rules'); }
+function openAgent(){ navTo('agent'); }
+function openRebate(){ navTo('rebate'); }
+function enterGame(sec){ currentSec=sec; navTo('game'); document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
+function goHomeFromGame(){ navTo('promotion'); }
 function switchMode(sec){ currentSec=sec; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
 function openDeposit(){ document.getElementById('depModal').style.display='flex';}
 function closeDeposit(){ document.getElementById('depModal').style.display='none';}
@@ -271,8 +304,7 @@ function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); i
 function openWithdraw(){ document.getElementById('withBal').innerText=bal; document.getElementById('withModal').style.display='flex';}
 function closeWithdraw(){ document.getElementById('withModal').style.display='none';}
 function setWith(a){ document.getElementById('withAmt').value=a;}
-function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam! Max: ₹'+bal); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' request sent');}
-function spinWheel(){ let win=Math.floor(Math.random()*500)+50; bal+=win; save(); render(); showInfo('You Won!','₹'+win+' malya!');}
+function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam!'); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' request sent');}
 let numsDiv=document.getElementById('nums'); for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d);}
 function openBet(type,val,title){ if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bandh'); selType=type; selVal=val; document.getElementById('betTitle').innerText=title; document.getElementById('betModal').style.display='flex'; updateTotal();}
 function closeBet(){ document.getElementById('betModal').style.display='none';}
@@ -281,16 +313,16 @@ function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=
 function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal();}
 document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal();});
 function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total ₹'+total.toFixed(2);}
-function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi! ₹'+bal); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
-function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : ''; renderHistory();}
+function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi!'); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
+function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); renderHistory();}
 function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html;}
 function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory();}
-function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; } document.getElementById('popMsg').innerText=msg;}
+function showPop(win,msg){ document.getElementById('resultPop').style.display='flex'; document.getElementById('popTitle').innerText=win?'💰 WIN!':'😢 LOSS'; document.getElementById('popMsg').innerText=msg;}
 function showInfo(title,msg){ document.getElementById('infoPop').style.display='flex'; document.getElementById('infoTitle').innerText=title; document.getElementById('infoMsg').innerText=msg;}
-function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); } data.bets[sec]=[];}
+function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec) showPop(false,'Loss (No: '+num+')'); } data.bets[sec]=[];}
 setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); if(document.getElementById('t1')){ document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; } render(); if(tl%2==0) save(); },1000);
 render();
-navTo('invite');
+navTo('promotion');
 </script>
 </body>
-</html>￼Enter
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </html>
