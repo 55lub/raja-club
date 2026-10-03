@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#000;display:flex;justify-content:center}
+.mobile{width:400px;max-width:100%;background:#081a14;min-height:100vh;position:relative;padding-bottom:75px;overflow:hidden}
+.screen{display:none;min-height:100vh;position:absolute;top:0;left:0;width:100%;padding-bottom:75px;overflow-y:auto}
+.screen.active{display:block}
+#accountScreen{background:#081a14}
+#homeScreen{background:#f0f0f0}
+#gameScreen{background:#011a12}
+#activityScreen,#bonusScreen,#promotionScreen{background:#f0f0f0}
+
+/* HOME */
+.homeTop{background:linear-gradient(135deg,#0d4a3a,#00c853);padding:20px 15px;color:white;border-radius:0 0 20px 20px}
+.homeTop h1{color:#ffd700;text-align:center}
+.balRow{display:flex;justify-content:space-between;align-items:center;margin-top:10px;background:#ffffff20;padding:10px;border-radius:10px}
+.wBtns{display:flex;gap:10px}
+.wBtns button{padding:8px 20px;border-radius:20px;border:none;font-weight:900;font-size:12px}
+.with{background:#ff3d3d;color:white}.dep{background:#ffd700;color:black}
+.section{padding:15px}
+.wigoGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.wigoCard{background:white;border-radius:15px;padding:15px;text-align:center;box-shadow:0 2px 8px #00000015;cursor:pointer;border-left:4px solid #00c853}
+.wigoCard.live{font-size:18px;color:#ff3d3d;font-weight:900;margin-top:5px;background:#ff000010;padding:5px;border-radius:8px}
+
+/* ACCOUNT BG */
+.accBg{background:linear-gradient(180deg,#0a8c5a 0%,#081a14 35%);min-height:100vh;padding-bottom:20px}
+.accHeader{display:flex;align-items:center;padding:20px;gap:15px}
+.accAvatar{width:70px;height:70px;border-radius:50%;background:linear-gradient(#ff9a9e,#fecfef);overflow:hidden;border:2px solid #ffffff50}
+.accAvatar img{width:100%;height:100%;object-fit:cover}
+.accInfo h2{color:white;font-size:16px}
+.accInfo.uid{background:#ff9800;color:white;padding:3px 10px;border-radius:15px;font-size:12px;display:inline-flex;gap:5px;margin-top:5px}
+.accInfo.last{color:#ffffffaa;font-size:11px;margin-top:6px}
+.vipBadge{background:linear-gradient(#c0c0c0,#8a8a8a);padding:2px 8px;border-radius:10px;font-size:10px;color:white;margin-left:8px}
+
+/* >>> EXACT BOX - TARA PHOTO JEVU <<< */
+.totalBoxExact{
+  background:#183129;
+  margin:0 12px;
+  border-radius:20px;
+  padding:20px 16px 18px 16px;
+}
+.totalBoxExact.top{display:flex;justify-content:space-between;align-items:center}
+.totalBoxExact.label{color:#a8beb6;font-size:16px}
+.totalBoxExact.amountRow{display:flex;align-items:center;gap:14px;margin-top:8px}
+.totalBoxExact.amount{color:#d1b06d;font-size:24px;font-weight:900}
+.totalBoxExact.refresh{color:#a8beb6;font-size:20px}
+.totalBoxExact.enterBtn{background:#d1b06d;color:white;border:none;padding:11px 22px;border-radius:22px;font-weight:700;font-size:15px}
+.totalBoxExact.line{height:1px;background:#2a4a3e;margin:18px 0 18px 0}
+
+/* 4 BOX - SEM TO SEM - ARWALLET JEVA J */
+.totalBoxExact.fourIcons{display:flex;justify-content:space-between}
+.iconBoxItem{flex:1;text-align:center;cursor:pointer}
+.iconBoxItem.icWrap{
+  width:52px;height:42px;
+  margin:0 auto 8px auto;
+  display:flex;justify-content:center;align-items:center;
+  font-size:32px;
+}
+.iconBoxItem.icText{color:#d1b06d;font-size:14px;font-weight:500}
+
+.safeBox{background:#0f2a22;margin:12px;border-radius:15px;padding:15px;display:flex;align-items:center;gap:12px;border:1px solid #ffffff10}
+.safeIcon{width:45px;height:45px;background:#ffcc33;border-radius:8px;display:flex;justify-content:center;align-items:center;font-size:24px}
+.safeBox h4{color:#c9a86a}
+.safeBox p{color:#ffffff80;font-size:11px;margin-top:3px;line-height:14px}
+.safeBox.amount{background:#ff8a3d;color:white;padding:2px 10px;border-radius:12px;font-size:13px;font-weight:900;margin-left:auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 12px}
+.card2{background:#0f2a22;border-radius:12px;padding:15px;display:flex;align-items:center;gap:10px;border:1px solid #ffffff10}
+.card2 h4{color:#c9a86a;font-size:14px}
+.card2 p{color:#ffffff60;font-size:11px}
+.listBox{background:#0f2a22;margin:12px;border-radius:15px;border:1px solid #ffffff10;overflow:hidden}
+.listItem{padding:15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff0f}
+.listItem:last-child{border:none}
+.listItem.left{display:flex;align-items:center;gap:12px;color:#c9a86a}
+
+/* GAME */
+.gameTop{display:flex;align-items:center;gap:10px;background:#0d4a3a;color:white;padding:12px}
+.gameTop button{background:#222;color:white;border:none;padding:8px 15px;border-radius:8px;font-size:20px}
+.wallet{background:#0d4a3a;border-radius:15px;padding:15px;text-align:center;color:white;margin:10px}
+.wallet h1{color:#ffd700}
+.modes{display:flex;gap:5px;margin:10px}
+.mode{flex:1;background:#1a3d33;border-radius:10px;padding:6px;text-align:center;color:#aaa;font-size:11px;cursor:pointer}
+.mode.active{background:#00c853;color:white}
+.mode span{font-size:10px;color:#ffd700;display:block}
+.timeBox{background:#0d4a3a;border-radius:12px;padding:10px;display:flex;justify-content:space-between;color:white;margin:0 10px}
+.timer b{background:#222;padding:4px;border-radius:4px;color:#ffd700}
+.colors{display:flex;gap:8px;margin:8px 10px}
+.c{flex:1;padding:10px;border-radius:20px;font-weight:900;border:none;cursor:pointer}
+.green{background:#00c853;color:white}.violet{background:#b14cff;color:white}.red{background:#ff3d3d;color:white}
+.numbers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 10px}
+.n{width:48px;height:48px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:900;color:white;cursor:pointer}
+.n.rednum{background:linear-gradient(#ff8a8a,#ff0000)}.n.greennum{background:linear-gradient(#8affb5,#00c853)}.n.mix{background:linear-gradient(90deg,#ff0000 50%,#b14cff 50%)}
+.bigsmall{display:flex;gap:8px;margin:0 10px}
+.bigsmall button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:900;cursor:pointer}
+.big{background:#ffb74d}.small{background:#64b5f6}
+.history{background:#0d4a3a;border-radius:12px;padding:10px;color:white;margin:10px}
+.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ffffff10;font-size:12px}
+.pager{display:flex;justify-content:center;gap:20px;padding:10px;background:#0d4a3a;margin:10px;border-radius:10px;color:white}
+.pager button{padding:6px 12px;background:#00c853;color:white;border:none;border-radius:6px;font-weight:900}
+
+/* BOTTOM NAV */
+.bottomNav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:400px;max-width:100%;background:#1a3d26;display:flex;justify-content:space-around;align-items:center;padding:6px 0 10px 0;z-index:1000;border-top:1px solid #ffffff10}
+.navItem{flex:1;text-align:center;color:#ffffff60;font-size:11px;cursor:pointer}
+.navItem.active{color:#ffd700}
+.navItem.ic{font-size:22px;display:block;margin-bottom:2px}
+.navItem.center{margin-top:-25px}
+.navItem.center.circle{width:60px;height:60px;background:linear-gradient(#ffd700,#ff9800);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:30px;border:4px solid #1a3d26;margin:0 auto}
+.navItem.center p{background:#333;color:#ffd700;font-size:9px;padding:2px 6px;border-radius:10px;margin-top:4px;font-weight:900}
+
+/* MODALS */
+#betModal,#depModal,#withModal{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;display:none;justify-content:center;align-items:flex-end;z-index:2000}
+.betSheet{width:400px;max-width:100%;background:#0f0f0f;border-radius:20px 20px 0 0;overflow:hidden}
+.betHead{background:#8bb9ff;padding:15px;text-align:center}
+.betHead h3{background:white;border-radius:10px;padding:8px 20px;display:inline-block;color:black}
+.betBody{padding:20px;color:white}
+.betRow{display:flex;justify-content:space-between;align-items:center;margin:15px 0}
+.amtBtns{display:flex;gap:8px}
+.amtBtn{background:#333;color:white;border:none;padding:8px 12px;border-radius:6px;font-weight:900}
+.amtBtn.active{background:#4a90e2}
+.qtyBox{display:flex;align-items:center;gap:10px}
+.qtyBox button{width:30px;height:30px;background:#4a90e2;color:white;border:none;border-radius:6px}
+.qtyBox input{width:60px;background:black;color:white;border:1px solid #333;text-align:center;padding:6px;border-radius:6px}
+.multBtns{display:flex;gap:6px;flex-wrap:wrap}
+.multBtn{background:#1a3d33;color:white;border:none;padding:8px 12px;border-radius:6px;font-size:12px}
+.multBtn.active{background:#4a90e2}
+.betFoot{display:flex}
+.betFoot button{flex:1;padding:15px;border:none;font-weight:900}
+.betFoot.cancel{background:#1a3d33;color:white}
+.betFoot.confirm{background:#4a90e2;color:white}
+.depSheet{width:400px;max-width:100%;background:#111;border-radius:20px 20px 0 0;padding:20px;color:white}
+.depSheet input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#222;color:white;margin:8px 0}
+.depOptions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.depOptions button{padding:10px;background:#1a3d33;color:white;border:1px solid #00c853;border-radius:10px;font-weight:900}
+.mainBtn{width:100%;padding:14px;background:#00c853;color:white;border:none;border-radius:12px;font-weight:900;margin-top:10px}
+.closeBtn{width:100%;padding:10px;background:#333;color:white;border:none;border-radius:10px;margin-top:8px}
+#resultPop,#infoPop{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;display:none;justify-content:center;align-items:center;z-index:3000}
+.pop{width:300px;background:#222;border:3px solid gold;border-radius:20px;padding:20px;text-align:center;color:white}
+.pop.win{border-color:#00ff88}.pop.lose{border-color:#ff0000}.pop.info{border-color:#4a90e2}
+</style>
+</head>
+<body>
+<div class="mobile">
+
+<div id="homeScreen" class="screen"><div class="homeTop"><h1>👑 RAJA CLUB</h1><div class="balRow"><span>Balance: ₹<span id="homeBal">5000</span></span><div class="wBtns"><button class="with" onclick="openWithdraw()">Withdraw</button><button class="dep" onclick="openDeposit()">Deposit</button></div></div></div><div class="section"><div style="font-weight:900;color:#333;margin:10px 0">🎮 Lottery</div><div class="wigoGrid"><div class="wigoCard" onclick="enterGame(30)"><h3>WinGo 30s</h3><div class="live" id="homeLive30">00:30</div></div><div class="wigoCard" onclick="enterGame(60)"><h3>WinGo 1M</h3><div class="live" id="homeLive60">01:00</div></div><div class="wigoCard" onclick="enterGame(180)"><h3>WinGo 3M</h3><div class="live" id="homeLive180">03:00</div></div><div class="wigoCard" onclick="enterGame(300)"><h3>WinGo 5M</h3><div class="live" id="homeLive300">05:00</div></div></div></div></div>
+<div id="activityScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>🎁 Activity</h2></div><div style="padding:15px"><div style="background:white;border-radius:12px;padding:15px;display:flex;justify-content:space-between"><div><h4>Daily Sign-in</h4><p style="font-size:11px;color:#888">Login 7 days get ₹500</p></div><button style="background:#00c853;color:white;border:none;padding:8px 15px;border-radius:20px">Claim</button></div></div></div>
+<div id="bonusScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;text-align:center;color:white"><h2>Get ₹500</h2></div><div style="text-align:center;padding:30px"><div style="width:200px;height:200px;background:linear-gradient(gold,orange);border-radius:50%;margin:0 auto;display:flex;justify-content:center;align-items:center;font-size:60px">🎡</div><button class="mainBtn" style="max-width:300px;margin-top:20px" onclick="spinWheel()">SPIN NOW</button></div></div>
+<div id="promotionScreen" class="screen"><div style="background:linear-gradient(#0d4a3a,#00c853);padding:20px;color:white;text-align:center"><h2>Promotion</h2></div><div style="background:white;margin:-15px 15px 15px 15px;border-radius:15px;padding:20px;text-align:center"><h2 style="color:#00c853">RAJA8847</h2><button class="mainBtn" onclick="showInfo('Copied','Link copied')">Copy Link</button></div></div>
+
+<div id="accountScreen" class="screen active">
+<div class="accBg">
+<div class="accHeader">
+<div class="accAvatar"><img src="https://i.pravatar.cc/100?img=5"></div>
+<div class="accInfo"><h2>MEMBERNNGA24S9 <span class="vipBadge">⭐ VIP0</span></h2><div class="uid">UID | 1774944 📋</div><div class="last">Last login: 2026-10-02 20:46:18</div></div>
+</div>
+
+<!-- TARA PHOTO JEVU - 4 BOX SAME -->
+<div class="totalBoxExact">
+  <div class="top">
+    <div>
+      <div class="label">Total balance</div>
+      <div class="amountRow">
+        <div class="amount">₹<span id="accBal">0.00</span></div>
+        <div class="refresh" onclick="render()">⟲</div>
+      </div>
+    </div>
+    <button class="enterBtn" onclick="openDeposit()">Enter wallet</button>
+  </div>
+  <div class="line"></div>
+  <div class="fourIcons">
+    <!-- 1 ARWallet -->
+    <div class="iconBoxItem" onclick="showInfo('ARWallet','₹'+bal)">
+      <div class="icWrap">👛</div>
+      <div class="icText">ARWallet</div>
+    </div>
+    <!-- 2 Deposit - TARA GREEN BOX -->
+    <div class="iconBoxItem" onclick="openDeposit()">
+      <div class="icWrap">🟤</div>
+      <div class="icText">Deposit</div>
+    </div>
+    <!-- 3 Withdraw - TARA GREEN BOX -->
+    <div class="iconBoxItem" onclick="openWithdraw()">
+      <div class="icWrap">💳</div>
+      <div class="icText">Withdraw</div>
+    </div>
+    <!-- 4 VIP - TARA GREEN BOX -->
+    <div class="iconBoxItem" onclick="showInfo('VIP','VIP0')">
+      <div class="icWrap" style="color:#00c853;font-weight:900">⬣ V</div>
+      <div class="icText">VIP</div>
+    </div>
+  </div>
+</div>
+
+<div class="safeBox"><div class="safeIcon">🏦</div><div><h4 style="color:#c9a86a">Safe</h4><p>The daily interest rate is 0.1%, and the income is calculated once every 1 minutes.</p></div><div class="amount">₹0.00 ›</div></div>
+<div class="grid2"><div class="card2"><div>📘</div><div><h4>Game History</h4><p>My game history</p></div></div><div class="card2"><div>📗</div><div><h4>Transaction</h4><p>My transaction history</p></div></div><div class="card2"><div>📕</div><div><h4>Deposit</h4><p>My deposit history</p></div></div><div class="card2"><div>💼</div><div><h4>Withdraw</h4><p>My withdraw history</p></div></div></div>
+<div class="listBox"><div class="listItem"><div class="left">🔔 Notification</div><span>›</span></div><div class="listItem"><div class="left">🎁 Gifts</div><span>›</span></div><div class="listItem"><div class="left">🎟️ My Top-Up Coupons</div><span>›</span></div></div>
+</div>
+</div>
+
+<div id="gameScreen" class="screen">
+<div class="gameTop"><button onclick="goHomeFromGame()">←</button><span id="gameTitle">WinGo</span></div>
+<div class="wallet"><h1>₹<span id="bal">5000</span></h1><p id="myBets" style="font-size:11px;color:#ffd700"></p></div>
+<div class="modes"><div class="mode active" data-s="30" onclick="switchMode(30)">30sec<span id="live30">00:30</span></div><div class="mode" data-s="60" onclick="switchMode(60)">1 Min<span id="live60">01:00</span></div><div class="mode" data-s="180" onclick="switchMode(180)">3 Min<span id="live180">03:00</span></div><div class="mode" data-s="300" onclick="switchMode(300)">5 Min<span id="live300">05:00</span></div></div>
+<div class="timeBox"><div><span id="modeName">WinGo 30sec</span><br><span id="period" style="font-size:10px"></span></div><div style="text-align:right">Time<br><span class="timer"><b id="t1">0</b><b id="t2">0</b>:<b id="t3">0</b><b id="t4">0</b></span></div></div>
+<div class="colors"><button class="c green" onclick="openBet('color','green','Select Green')">Green 2X</button><button class="c violet" onclick="openBet('color','violet','Select Violet')">Violet 4.5X</button><button class="c red" onclick="openBet('color','red','Select Red')">Red 2X</button></div>
+<div class="numbers" id="nums"></div>
+<div class="bigsmall"><button class="big" onclick="openBet('size','big','Select Big')">Big 2X</button><button class="small" onclick="openBet('size','small','Select Small')">Small 2X</button></div>
+<div class="history" id="hist"></div>
+<div class="pager"><button onclick="changePage(-1)">←</button><span id="pageInfo">1/1</span><button onclick="changePage(1)">→</button></div>
+</div>
+
+<div class="bottomNav" id="bottomNav">
+<div class="navItem" id="navHome" onclick="navTo('home')"><span class="ic">🏠</span>Home</div>
+<div class="navItem" id="navActivity" onclick="navTo('activity')"><span class="ic">🎁</span>Activity</div>
+<div class="navItem center" id="navBonus" onclick="navTo('bonus')"><div class="circle">🎡</div><p>Get ₹500</p></div>
+<div class="navItem" id="navPromotion" onclick="navTo('promotion')"><span class="ic">👥</span>Promotion</div>
+<div class="navItem active" id="navAccount" onclick="navTo('account')"><span class="ic">👤</span>Account</div>
+</div>
+</div>
+
+<div id="betModal"><div class="betSheet"><div class="betHead"><h3 id="betTitle">Select Small</h3></div><div class="betBody"><div class="betRow"><span>Balance</span><div class="amtBtns"><button class="amtBtn active" data-a="1" onclick="setAmt(1)">1</button><button class="amtBtn" data-a="10" onclick="setAmt(10)">10</button><button class="amtBtn" data-a="100" onclick="setAmt(100)">100</button><button class="amtBtn" data-a="1000" onclick="setAmt(1000)">1000</button></div></div><div class="betRow"><span>Quantity</span><div class="qtyBox"><button onclick="changeQty(-1)">-</button><input id="qty" value="1"><button onclick="changeQty(1)">+</button></div></div><div class="betRow"><span></span><div class="multBtns"><button class="multBtn active" data-m="1" onclick="setMult(1)">X1</button><button class="multBtn" data-m="5" onclick="setMult(5)">X5</button><button class="multBtn" data-m="10" onclick="setMult(10)">X10</button><button class="multBtn" data-m="20" onclick="setMult(20)">X20</button><button class="multBtn" data-m="50" onclick="setMult(50)">X50</button><button class="multBtn" data-m="100" onclick="setMult(100)">X100</button></div></div></div><div class="betFoot"><button class="cancel" onclick="closeBet()">Cancel</button><button class="confirm" id="confirmBtn" onclick="confirmBet()">Total ₹1</button></div></div></div>
+<div id="depModal"><div class="depSheet"><h2>💰 Deposit</h2><input id="depAmt" type="number" placeholder="Min ₹100"><div class="depOptions"><button onclick="setDep(100)">₹100</button><button onclick="setDep(500)">₹500</button><button onclick="setDep(1000)">₹1000</button><button onclick="setDep(5000)">₹5000</button></div><button class="mainBtn" onclick="doDeposit()">Deposit Now</button><button class="closeBtn" onclick="closeDeposit()">Close</button></div></div>
+<div id="withModal"><div class="depSheet"><h2>🏦 Withdraw</h2><p style="color:#aaa">Available: ₹<span id="withBal">0</span></p><input id="withAmt" type="number" placeholder="Min ₹200"><div class="depOptions"><button onclick="setWith(200)">₹200</button><button onclick="setWith(1000)">₹1000</button><button onclick="setWith(5000)">₹5000</button></div><button class="mainBtn" style="background:#ff3d3d" onclick="doWithdraw()">Withdraw</button><button class="closeBtn" onclick="closeWithdraw()">Close</button></div></div>
+<div id="resultPop" onclick="this.style.display='none'"><div class="pop" id="popBox"><h1 id="popTitle">WIN</h1><p id="popMsg"></p><br><button style="padding:10px 20px;background:gold;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
+<div id="infoPop" onclick="this.style.display='none'"><div class="pop info"><h1 id="infoTitle">Success</h1><p id="infoMsg"></p><br><button style="padding:10px 20px;background:#4a90e2;color:white;border:none;border-radius:10px;font-weight:900">OK</button></div></div>
+
+<script>
+let defaultData={timeLefts:{30:30,60:60,180:180,300:300},periods:{30:2001,60:2001,180:2001,300:2001},histories:{30:[],60:[],180:[],300:[]},bets:{30:[],60:[],180:[],300:[]},lastTime:Date.now(),bal:5000,currentSec:30};
+let data=JSON.parse(localStorage.getItem('rajaV12')||'null')||defaultData;
+let elapsed=Math.floor((Date.now()-data.lastTime)/1000);
+if(elapsed>0){ [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let e=elapsed; while(e>0){ if(e>=tl){ e-=tl; let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.bets[sec]=[]; tl=sec; }else{ tl-=e; e=0; } } data.timeLefts[sec]=tl; }); }
+let currentSec=data.currentSec, page=1, bal=data.bal, selType=null, selVal=null, selAmt=1, selQty=1, selMult=1;
+function save(){ data.lastTime=Date.now(); data.currentSec=currentSec; data.bal=bal; localStorage.setItem('rajaV12', JSON.stringify(data)); }
+function navTo(tab){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active')); if(tab=='home'){document.getElementById('homeScreen').classList.add('active');document.getElementById('navHome').classList.add('active');} if(tab=='activity'){document.getElementById('activityScreen').classList.add('active');document.getElementById('navActivity').classList.add('active');} if(tab=='bonus'){document.getElementById('bonusScreen').classList.add('active');document.getElementById('navBonus').classList.add('active');} if(tab=='promotion'){document.getElementById('promotionScreen').classList.add('active');document.getElementById('navPromotion').classList.add('active');} if(tab=='account'){document.getElementById('accountScreen').classList.add('active');document.getElementById('navAccount').classList.add('active');} document.getElementById('bottomNav').style.display='flex';}
+function enterGame(sec){ currentSec=sec; document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById('gameScreen').classList.add('active'); document.getElementById('bottomNav').style.display='none'; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
+function goHomeFromGame(){ navTo('account'); render();}
+function switchMode(sec){ currentSec=sec; document.querySelectorAll('.mode').forEach(m=>m.classList.toggle('active', parseInt(m.dataset.s)==sec)); page=1; render(); save();}
+function openDeposit(){ document.getElementById('depModal').style.display='flex';}
+function closeDeposit(){ document.getElementById('depModal').style.display='none';}
+function setDep(a){ document.getElementById('depAmt').value=a;}
+function doDeposit(){ let a=parseInt(document.getElementById('depAmt').value); if(!a||a<100) return alert('Min ₹100'); bal+=a; save(); render(); closeDeposit(); showInfo('Deposit Success','₹'+a+' add thai gaya');}
+function openWithdraw(){ document.getElementById('withBal').innerText=bal; document.getElementById('withModal').style.display='flex';}
+function closeWithdraw(){ document.getElementById('withModal').style.display='none';}
+function setWith(a){ document.getElementById('withAmt').value=a;}
+function doWithdraw(){ let a=parseInt(document.getElementById('withAmt').value); if(!a||a<200) return alert('Min ₹200'); if(a>bal) return alert('Balance kam! Max: ₹'+bal); bal-=a; save(); render(); closeWithdraw(); showInfo('Withdraw','₹'+a+' request sent');}
+function spinWheel(){ let win=Math.floor(Math.random()*500)+50; bal+=win; save(); render(); showInfo('You Won!','₹'+win+' malya!');}
+let numsDiv=document.getElementById('nums'); for(let i=0;i<10;i++){ let d=document.createElement('div'); d.className='n '+(i==0||i==5?'mix':i%2==0?'rednum':'greennum'); d.innerText=i; d.onclick=()=>openBet('number',i,'Select '+i); numsDiv.appendChild(d);}
+function openBet(type,val,title){ if(data.timeLefts[currentSec]<=5) return alert('Last 5 sec bandh'); selType=type; selVal=val; document.getElementById('betTitle').innerText=title; document.getElementById('betModal').style.display='flex'; updateTotal();}
+function closeBet(){ document.getElementById('betModal').style.display='none';}
+function setAmt(a){ selAmt=a; document.querySelectorAll('.amtBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.a)==a)); updateTotal();}
+function setMult(m){ selMult=m; document.querySelectorAll('.multBtn').forEach(b=>b.classList.toggle('active', parseInt(b.dataset.m)==m)); updateTotal();}
+function changeQty(d){ selQty+=d; if(selQty<1) selQty=1; document.getElementById('qty').value=selQty; updateTotal();}
+document.getElementById('qty').addEventListener('input',e=>{ selQty=parseInt(e.target.value)||1; updateTotal();});
+function updateTotal(){ let total=selAmt*selQty*selMult; document.getElementById('confirmBtn').innerText='Total ₹'+total.toFixed(2);}
+function confirmBet(){ let total=selAmt*selQty*selMult; if(total>bal) return alert('Balance nathi! ₹'+bal); bal-=total; data.bets[currentSec].push({type:selType,val:selVal,amt:total}); save(); render(); closeBet();}
+function render(){ document.getElementById('bal').innerText=bal; document.getElementById('homeBal').innerText=bal; document.getElementById('accBal').innerText=bal.toFixed(2); document.getElementById('period').innerText='20261002'+currentSec+String(data.periods[currentSec]).padStart(4,'0'); document.getElementById('modeName').innerText=currentSec==30?'WinGo 30sec':currentSec==60?'WinGo 1 Min':currentSec==180?'WinGo 3 Min':'WinGo 5 Min'; document.getElementById('gameTitle').innerText='WinGo '+currentSec+'s'; [30,60,180,300].forEach(sec=>{ let tl=data.timeLefts[sec]; let mm=String(Math.floor(tl/60)).padStart(2,'0'); let ss=String(tl%60).padStart(2,'0'); let t=mm+':'+ss; if(document.getElementById('live'+sec)) document.getElementById('live'+sec).innerText=t; if(document.getElementById('homeLive'+sec)) document.getElementById('homeLive'+sec).innerText=t;}); let b=data.bets[currentSec]; document.getElementById('myBets').innerText=b.length? 'My Bets: '+b.map(x=>x.val+'='+x.amt).join(', ') : ''; renderHistory();}
+function renderHistory(){ let list=data.histories[currentSec]; let totalPages=Math.max(1,Math.ceil(list.length/12)); if(page>totalPages) page=1; document.getElementById('pageInfo').innerText=page+'/'+totalPages; let slice=list.slice((page-1)*12,page*12); let html=`<div class="row" style="color:#aaa;font-weight:900"><span>Period</span><span>No</span><span>B/S</span><span>Col</span></div>`; slice.forEach(r=>{ html+=`<div class="row"><span>${r.period.slice(-4)}</span><span style="font-weight:900;color:${r.num%2==0?'#ff4444':'#00ff88'}">${r.num}</span><span>${r.bs}</span><span>${r.col}</span></div>`; }); document.getElementById('hist').innerHTML=html;}
+function changePage(d){ let totalPages=Math.max(1,Math.ceil(data.histories[currentSec].length/12)); page+=d; if(page<1) page=totalPages; if(page>totalPages) page=1; renderHistory();}
+function showPop(win,msg){ let box=document.getElementById('popBox'); document.getElementById('resultPop').style.display='flex'; if(win){ box.className='pop win'; document.getElementById('popTitle').innerText='💰 WIN!'; }else{ box.className='pop lose'; document.getElementById('popTitle').innerText='😢 LOSS'; } document.getElementById('popMsg').innerText=msg;}
+function showInfo(title,msg){ document.getElementById('infoPop').style.display='flex'; document.getElementById('infoTitle').innerText=title; document.getElementById('infoMsg').innerText=msg;}
+function checkWin(sec,num){ let realWin=0; data.bets[sec].forEach(b=>{ let w=false; if(b.type=='color'){ if(b.val=='green' && [1,3,7,9,5].includes(num)) w=true; if(b.val=='red' && [2,4,6,8,0].includes(num)) w=true; if(b.val=='violet' && [0,5].includes(num)) w=true; } if(b.type=='size' && ((b.val=='big'&&num>=5)||(b.val=='small'&&num<5))) w=true; if(b.type=='number' && b.val==num) w=true; if(w){ let mult = b.type=='number'?9: (b.type=='color'&&b.val=='violet'?4.5:2); realWin+=b.amt*mult; } }); if(realWin>0){ bal+=Math.floor(realWin); if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(true,'Win ₹'+Math.floor(realWin)+' (No: '+num+')'); } else if(data.bets[sec].length>0){ if(sec==currentSec && document.getElementById('gameScreen').classList.contains('active')) showPop(false,'Loss ₹'+data.bets[sec].reduce((s,b)=>s+b.amt,0)+' (No: '+num+')'); } data.bets[sec]=[];}
+setInterval(()=>{ [30,60,180,300].forEach(sec=>{ data.timeLefts[sec]--; if(data.timeLefts[sec]<=0){ let num=Math.floor(Math.random()*10); let bs=num>=5?'Big':'Small'; let col=num==0||num==5?'🔴🟣':num%2==0?'🔴':'🟢'; let pid='20261002'+sec+String(data.periods[sec]).padStart(4,'0'); checkWin(sec,num); data.histories[sec].unshift({period:pid,num,bs,col}); data.periods[sec]++; data.timeLefts[sec]=sec; if(sec==currentSec) page=1; } }); let tl=data.timeLefts[currentSec]; let m=String(Math.floor(tl/60)).padStart(2,'0'); let s=String(tl%60).padStart(2,'0'); if(document.getElementById('t1')){ document.getElementById('t1').innerText=m[0];document.getElementById('t2').innerText=m[1];document.getElementById('t3').innerText=s[0];document.getElementById('t4').innerText=s[1]; } render(); if(tl%2==0) save(); },1000);
+render();
+</script>
+</body>
+</html>￼Enter
